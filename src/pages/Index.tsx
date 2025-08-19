@@ -3,17 +3,16 @@ import React, { memo } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2 } from 'lucide-react';
 
-// Import the hero components
-import { ProfessionalHeader } from "@/components/landing/ProfessionalHeader";
-import { FuturisticHero } from "@/components/landing/FuturisticHero";
-import { ModernServicesSection } from "@/components/landing/ModernServicesSection";
+// Import the premium components
+import { PremiumHeader } from "@/components/landing/PremiumHeader";
+import { PremiumHero } from "@/components/landing/PremiumHero";
 
 // Loading component
 const LoadingSpinner = memo(() => (
-  <div className="min-h-screen flex items-center justify-center bg-gray-950">
+  <div className="min-h-screen flex items-center justify-center bg-[#111111]">
     <div className="text-center space-y-4">
-      <Loader2 className="h-8 w-8 animate-spin text-blue-400 mx-auto" />
-      <p className="text-gray-400">Laden...</p>
+      <Loader2 className="h-8 w-8 animate-spin text-[#2196F3] mx-auto" />
+      <p className="text-[#CCCCCC]">Laden...</p>
     </div>
   </div>
 ));
@@ -29,12 +28,11 @@ const Index = memo(() => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950 relative overflow-hidden">
-      <ProfessionalHeader />
+    <div className="min-h-screen bg-[#111111] relative overflow-hidden">
+      <PremiumHeader />
       
       <main className="relative z-10">
-        <FuturisticHero />
-        <ModernServicesSection />
+        <PremiumHero />
       </main>
     </div>
   );
