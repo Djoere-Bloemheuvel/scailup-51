@@ -1,7 +1,9 @@
+
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Target, Zap, TrendingUp, Sparkles, Brain, Rocket, Shield, Users, Mail, BarChart3 } from "lucide-react";
+import { ArrowRight, Target, Zap, TrendingUp, Sparkles, Brain, Rocket, Shield, Users, Mail, BarChart3, Database, Linkedin, Bot } from "lucide-react";
 import { useConversionModalContext } from '@/contexts/ConversionModalContext';
+
 const FuturisticHero = memo(() => {
   const {
     openModal
@@ -12,6 +14,7 @@ const FuturisticHero = memo(() => {
     console.log('FuturisticHero: Plan een gesprek button clicked - opening modal');
     openModal();
   }, [openModal]);
+
   return <>
       {/* Main Hero Section */}
       <section className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
@@ -42,10 +45,7 @@ const FuturisticHero = memo(() => {
             
             {/* Left Content */}
             <div className="space-y-10 animate-fade-in">
-              {/* Welcome badge */}
-              
-              
-              {/* Main headline - smaller size */}
+              {/* Main headline */}
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[0.9] tracking-tight">
                   WIJ ZIJN 
@@ -100,127 +100,144 @@ const FuturisticHero = memo(() => {
               </div>
             </div>
 
-            {/* Right Visual - Combined AI Figure + Dashboard */}
+            {/* Right Visual - Services Showcase */}
             <div className="relative animate-slide-up flex items-center justify-center">
-              {/* Main container for both elements */}
-              <div className="relative w-full max-w-md">
+              <div className="relative w-full max-w-lg">
                 
-                {/* Central AI visualization */}
-                <div className="relative mb-8">
-                  {/* Main glowing orb */}
-                  <div className="relative w-64 h-64 mx-auto">
-                    {/* Outer glow rings */}
+                {/* Central Services Hub */}
+                <div className="relative">
+                  {/* Main hub container */}
+                  <div className="relative w-80 h-80 mx-auto">
+                    {/* Background glow */}
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/30 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute inset-4 bg-gradient-to-r from-cyan-400/30 via-blue-500/40 to-purple-400/30 rounded-full blur-2xl animate-pulse" style={{
-                    animationDelay: '1s'
-                  }} />
                     
                     {/* Central core */}
-                    <div className="absolute inset-1/4 bg-gradient-to-br from-blue-400/60 via-cyan-300/70 to-blue-500/60 rounded-full backdrop-blur-sm border border-cyan-300/30">
-                      {/* Inner energy patterns */}
-                      <div className="absolute inset-2 rounded-full border border-cyan-400/20">
-                        <div className="absolute inset-1 rounded-full bg-gradient-to-tr from-transparent via-cyan-400/10 to-transparent animate-spin" style={{
-                        animationDuration: '20s'
-                      }}>
-                          {/* Neural network lines */}
-                          <div className="absolute top-1/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
-                          <div className="absolute top-3/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent" />
-                          <div className="absolute left-1/4 top-1/4 w-px h-1/2 bg-gradient-to-b from-transparent via-purple-400/60 to-transparent" />
-                          <div className="absolute right-1/4 top-1/4 w-px h-1/2 bg-gradient-to-b from-transparent via-cyan-400/60 to-transparent" />
+                    <div className="absolute inset-8 bg-slate-900/80 backdrop-blur-sm rounded-full border border-cyan-300/30 flex items-center justify-center">
+                      <div className="text-center space-y-2">
+                        <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center mx-auto">
+                          <Rocket className="h-6 w-6 text-white" />
+                        </div>
+                        <div className="text-white font-bold">ScailUp</div>
+                        <div className="text-xs text-slate-400">AI Platform</div>
+                      </div>
+                    </div>
+
+                    {/* Service nodes positioned around the circle */}
+                    
+                    {/* Lead Database - Top */}
+                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                      <div className="bg-slate-900/80 backdrop-blur-sm rounded-xl p-3 border border-blue-400/30 animate-float">
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
+                            <Database className="h-4 w-4 text-white" />
+                          </div>
+                          <span className="text-xs text-white font-medium">Lead Database</span>
+                          <span className="text-xs text-blue-400">2,847 leads</span>
                         </div>
                       </div>
-                      
-                      {/* Center AI symbol */}
-                      <div className="absolute inset-1/3 rounded-full bg-gradient-to-br from-white/20 to-cyan-300/40 backdrop-blur-sm flex items-center justify-center">
-                        <Brain className="h-6 w-6 text-white animate-pulse" />
+                    </div>
+
+                    {/* Email Outreach - Top Right */}
+                    <div className="absolute -top-2 -right-8">
+                      <div className="bg-slate-900/80 backdrop-blur-sm rounded-xl p-3 border border-green-400/30 animate-float" style={{ animationDelay: '1s' }}>
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center">
+                            <Mail className="h-4 w-4 text-white" />
+                          </div>
+                          <span className="text-xs text-white font-medium">Email AI</span>
+                          <span className="text-xs text-green-400">87% open rate</span>
+                        </div>
                       </div>
+                    </div>
+
+                    {/* LinkedIn Outreach - Right */}
+                    <div className="absolute top-1/2 -right-12 -translate-y-1/2">
+                      <div className="bg-slate-900/80 backdrop-blur-sm rounded-xl p-3 border border-purple-400/30 animate-float" style={{ animationDelay: '2s' }}>
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <Linkedin className="h-4 w-4 text-white" />
+                          </div>
+                          <span className="text-xs text-white font-medium">LinkedIn AI</span>
+                          <span className="text-xs text-purple-400">73% response</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* AI Personalization - Bottom Right */}
+                    <div className="absolute -bottom-2 -right-8">
+                      <div className="bg-slate-900/80 backdrop-blur-sm rounded-xl p-3 border border-pink-400/30 animate-float" style={{ animationDelay: '3s' }}>
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center">
+                            <Brain className="h-4 w-4 text-white" />
+                          </div>
+                          <span className="text-xs text-white font-medium">AI Personalisatie</span>
+                          <span className="text-xs text-pink-400">91% relevantie</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Sales Automation - Bottom */}
+                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2">
+                      <div className="bg-slate-900/80 backdrop-blur-sm rounded-xl p-3 border border-cyan-400/30 animate-float" style={{ animationDelay: '4s' }}>
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center">
+                            <Bot className="h-4 w-4 text-white" />
+                          </div>
+                          <span className="text-xs text-white font-medium">Automation</span>
+                          <span className="text-xs text-cyan-400">24/7 actief</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Analytics - Left */}
+                    <div className="absolute top-1/2 -left-12 -translate-y-1/2">
+                      <div className="bg-slate-900/80 backdrop-blur-sm rounded-xl p-3 border border-orange-400/30 animate-float" style={{ animationDelay: '5s' }}>
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                            <BarChart3 className="h-4 w-4 text-white" />
+                          </div>
+                          <span className="text-xs text-white font-medium">Analytics</span>
+                          <span className="text-xs text-orange-400">Real-time</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Connection lines with glow effect */}
+                    <div className="absolute inset-0">
+                      {/* Connecting lines from center to each service */}
+                      <div className="absolute top-1/2 left-1/2 w-24 h-px bg-gradient-to-r from-transparent to-blue-400/60 transform -translate-y-1/2 -translate-x-full rotate-[320deg] origin-right"></div>
+                      <div className="absolute top-1/2 left-1/2 w-24 h-px bg-gradient-to-r from-transparent to-green-400/60 transform -translate-y-1/2 -translate-x-full rotate-[20deg] origin-right"></div>
+                      <div className="absolute top-1/2 left-1/2 w-24 h-px bg-gradient-to-r from-transparent to-purple-400/60 transform -translate-y-1/2 -translate-x-full rotate-[0deg] origin-right"></div>
+                      <div className="absolute top-1/2 left-1/2 w-24 h-px bg-gradient-to-r from-transparent to-pink-400/60 transform -translate-y-1/2 -translate-x-full rotate-[340deg] origin-right"></div>
+                      <div className="absolute top-1/2 left-1/2 w-24 h-px bg-gradient-to-r from-transparent to-cyan-400/60 transform -translate-y-1/2 -translate-x-full rotate-[280deg] origin-right"></div>
+                      <div className="absolute top-1/2 left-1/2 w-24 h-px bg-gradient-to-r from-transparent to-orange-400/60 transform -translate-y-1/2 -translate-x-full rotate-[180deg] origin-right"></div>
                     </div>
                   </div>
                 </div>
 
-                {/* Dashboard-style metrics below orb */}
-                <div className="space-y-4">
-                  {/* Live metrics card */}
-                  <div className="bg-slate-900/60 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm text-slate-400">Live Dashboard</span>
-                      <div className="flex items-center gap-1">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span className="text-xs text-green-400">LIVE</span>
-                      </div>
+                {/* Bottom metrics summary */}
+                <div className="mt-8 bg-slate-900/60 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
+                  <div className="text-center space-y-3">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      <span className="text-xs text-green-400 font-medium">LIVE RESULTATEN</span>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="text-center">
-                        <div className="text-xl font-bold text-white">2,847</div>
-                        <div className="text-xs text-slate-400">Leads</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-xl font-bold text-white">€2.3M</div>
+                    <div className="grid grid-cols-3 gap-4 text-center">
+                      <div>
+                        <div className="text-lg font-bold text-white">€2.3M</div>
                         <div className="text-xs text-slate-400">Pipeline</div>
                       </div>
-                    </div>
-                    
-                    {/* Progress bar */}
-                    <div className="mt-3">
-                      <div className="w-full bg-slate-700 rounded-full h-1.5">
-                        <div className="bg-gradient-to-r from-blue-400 to-cyan-400 h-1.5 rounded-full transition-all duration-1000" style={{
-                        width: '73%'
-                      }}></div>
+                      <div>
+                        <div className="text-lg font-bold text-white">2,847</div>
+                        <div className="text-xs text-slate-400">Leads</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-white">94%</div>
+                        <div className="text-xs text-slate-400">Success</div>
                       </div>
                     </div>
                   </div>
-
-                  {/* Activity feed */}
-                  <div className="bg-slate-900/60 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
-                    <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-xs">
-                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
-                        <span className="text-slate-300">Nieuwe lead: TechCorp B.V.</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs">
-                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
-                        <span className="text-slate-300">Email geopend: Innovation Inc.</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs">
-                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
-                        <span className="text-slate-300">Meeting gepland: StartupXYZ</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating data elements around the main visual */}
-                <div className="absolute -top-4 -right-4 bg-slate-900/80 backdrop-blur-sm rounded-lg p-2 border border-cyan-400/20 animate-float">
-                  <div className="flex items-center gap-2">
-                    <Mail className="h-3 w-3 text-cyan-400" />
-                    <span className="text-xs text-white">AI Email</span>
-                  </div>
-                </div>
-
-                <div className="absolute top-1/4 -left-8 bg-slate-900/80 backdrop-blur-sm rounded-lg p-2 border border-purple-400/20 animate-float" style={{
-                animationDelay: '2s'
-              }}>
-                  <div className="flex items-center gap-2">
-                    <BarChart3 className="h-3 w-3 text-purple-400" />
-                    <span className="text-xs text-white">Analytics</span>
-                  </div>
-                </div>
-
-                {/* Orbiting particles */}
-                <div className="absolute inset-0 animate-spin" style={{
-                animationDuration: '30s'
-              }}>
-                  <div className="absolute top-0 left-1/2 w-1.5 h-1.5 bg-cyan-400/60 rounded-full -translate-x-1/2 animate-pulse" />
-                  <div className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-400/60 rounded-full -translate-x-1/2 animate-pulse" style={{
-                  animationDelay: '1s'
-                }} />
-                  <div className="absolute left-0 top-1/2 w-1 h-1 bg-purple-400/60 rounded-full -translate-y-1/2 animate-pulse" style={{
-                  animationDelay: '2s'
-                }} />
-                  <div className="absolute right-0 top-1/2 w-1.5 h-1.5 bg-cyan-400/60 rounded-full -translate-y-1/2 animate-pulse" style={{
-                  animationDelay: '3s'
-                }} />
                 </div>
               </div>
             </div>
@@ -317,5 +334,6 @@ const FuturisticHero = memo(() => {
       </section>
     </>;
 });
+
 FuturisticHero.displayName = 'FuturisticHero';
 export { FuturisticHero };
