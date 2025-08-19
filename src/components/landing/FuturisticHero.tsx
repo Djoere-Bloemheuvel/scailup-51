@@ -1,7 +1,7 @@
 
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Target, Zap, TrendingUp, Sparkles } from "lucide-react";
 import { useConversionModalContext } from '@/contexts/ConversionModalContext';
 
 const FuturisticHero = memo(() => {
@@ -18,103 +18,153 @@ const FuturisticHero = memo(() => {
     <>
       {/* Hero Section */}
       <section className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
-        {/* Ambient background effects */}
+        {/* Enhanced background effects */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Subtle grid pattern */}
+          {/* Animated grid pattern */}
           <div 
-            className="absolute inset-0 opacity-[0.02]"
+            className="absolute inset-0 opacity-[0.03] animate-pulse"
             style={{
               backgroundImage: `
-                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+                linear-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px)
               `,
-              backgroundSize: '80px 80px'
+              backgroundSize: '60px 60px'
             }}
           />
           
-          {/* Ambient glows */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-          <div className="absolute top-1/3 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-500/5 rounded-full blur-3xl" />
+          {/* Multiple ambient glows */}
+          <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl animate-float" />
+          <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-indigo-500/15 rounded-full blur-3xl animate-float" style={{ animationDelay: '4s' }} />
         </div>
 
         {/* Main hero content */}
         <div className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20">
-          <div className="text-center space-y-12">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
             
-            {/* Main headline */}
-            <div className="space-y-6">
-              <h1 className="text-6xl md:text-7xl lg:text-8xl font-thin text-white leading-[0.9] tracking-tight">
-                Bereik de juiste
-                <br />
-                <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent font-light">
-                  beslissers
-                </span>
-              </h1>
+            {/* Left Content */}
+            <div className="space-y-12 animate-fade-in">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-medium backdrop-blur-sm">
+                <Sparkles className="h-4 w-4" />
+                AI-Powered Outbound Marketing
+              </div>
               
-              <p className="text-xl md:text-2xl text-slate-400 font-light leading-relaxed max-w-3xl mx-auto">
-                Slim, persoonlijk, schaalbaar.
-                <br />
-                Outbound marketing die écht werkt.
-              </p>
-            </div>
+              {/* Main headline */}
+              <div className="space-y-6">
+                <h1 className="text-5xl md:text-6xl lg:text-7xl font-thin text-white leading-[0.9] tracking-tight">
+                  Slimmer werken,
+                  <br />
+                  <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent font-light">
+                    sneller groeien
+                  </span>
+                </h1>
+                
+                <p className="text-xl md:text-2xl text-slate-400 font-light leading-relaxed max-w-2xl">
+                  Automatiseer je outbound marketing met AI en bereik de juiste beslissers op het perfecte moment.
+                </p>
+              </div>
 
-            {/* Premium video placeholder with glassmorphism */}
-            <div className="relative mt-20 mb-16">
-              {/* Glow effect behind video */}
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-500/30 to-blue-500/20 blur-3xl scale-110" />
-              
-              {/* Video container */}
-              <div className="relative">
-                <div 
-                  className="aspect-video rounded-3xl overflow-hidden backdrop-blur-xl border border-white/10"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%)',
-                    boxShadow: `
-                      0 25px 50px -12px rgba(0, 0, 0, 0.5),
-                      inset 0 1px 0 rgba(255, 255, 255, 0.1)
-                    `
-                  }}
-                >
-                  {/* Premium abstract animation placeholder */}
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    {/* Animated background elements */}
-                    <div className="absolute inset-0">
-                      {/* Floating orbs */}
-                      <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-br from-blue-400/30 to-cyan-500/30 rounded-full blur-xl animate-float" />
-                      <div className="absolute top-1/3 right-1/3 w-24 h-24 bg-gradient-to-br from-cyan-400/20 to-blue-500/20 rounded-full blur-lg animate-float" style={{ animationDelay: '1s' }} />
-                      <div className="absolute bottom-1/3 left-1/2 w-20 h-20 bg-gradient-to-br from-indigo-400/25 to-purple-500/25 rounded-full blur-md animate-float" style={{ animationDelay: '2s' }} />
-                      
-                      {/* Subtle grid lines */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/10 to-transparent" />
-                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent" />
+              {/* Key benefits */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {[
+                  { icon: Target, label: "94% Bereik", desc: "Precision targeting" },
+                  { icon: Zap, label: "5x Sneller", desc: "AI automation" },
+                  { icon: TrendingUp, label: "73% Meer", desc: "Qualified leads" }
+                ].map((benefit, index) => (
+                  <div key={index} className="flex items-center gap-3 p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300">
+                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 p-2.5 text-white">
+                      <benefit.icon className="h-5 w-5" />
                     </div>
-                    
-                    {/* Play button */}
-                    <button className="relative z-10 group">
-                      <div className="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center border border-white/20 group-hover:bg-white/15 transition-all duration-300 group-hover:scale-110">
-                        <Play className="h-8 w-8 text-white ml-1" fill="white" />
-                      </div>
-                    </button>
+                    <div>
+                      <div className="text-white font-semibold">{benefit.label}</div>
+                      <div className="text-xs text-slate-400">{benefit.desc}</div>
+                    </div>
                   </div>
-                </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <div className="space-y-6">
+                <Button 
+                  onClick={handlePlanGesprekClick}
+                  size="lg"
+                  className="group bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white border-0 px-10 py-4 text-lg font-medium rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 hover:scale-[1.02]"
+                >
+                  Start je groeispurt
+                  <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Button>
+                
+                <p className="text-slate-500 text-sm">
+                  Gratis strategiesessie • Direct resultaat • Geen verplichtingen
+                </p>
               </div>
             </div>
 
-            {/* CTA */}
-            <div className="space-y-6">
-              <Button 
-                onClick={handlePlanGesprekClick}
-                size="lg"
-                className="group bg-blue-600 hover:bg-blue-500 text-white border-0 px-10 py-4 text-lg font-medium rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 hover:scale-[1.02]"
-              >
-                Plan je strategiegesprek
-                <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
-              
-              <p className="text-slate-500 text-sm">
-                Gratis 30 minuten • Directe impact • Geen verplichtingen
-              </p>
+            {/* Right Visual */}
+            <div className="relative animate-slide-up">
+              {/* Main dashboard mockup */}
+              <div className="relative">
+                {/* Glow effect */}
+                <div className="absolute -inset-8 bg-gradient-to-r from-blue-500/20 via-cyan-500/30 to-blue-500/20 blur-3xl rounded-3xl animate-pulse-glow" />
+                
+                {/* Dashboard container */}
+                <div className="relative bg-slate-900/80 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-8 shadow-2xl">
+                  {/* Dashboard header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="flex gap-2">
+                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                      </div>
+                      <span className="text-slate-400 text-sm font-medium">ScailUp Dashboard</span>
+                    </div>
+                    <div className="text-xs text-slate-500">Live data</div>
+                  </div>
+
+                  {/* Metrics cards */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    {[
+                      { label: "Leads deze maand", value: "2,847", change: "+23%" },
+                      { label: "Response rate", value: "73%", change: "+12%" },
+                      { label: "Pipeline waarde", value: "€2.3M", change: "+45%" },
+                      { label: "Actieve campaigns", value: "12", change: "+3%" }
+                    ].map((metric, index) => (
+                      <div key={index} className="bg-slate-800/50 rounded-xl p-4 border border-slate-700/30">
+                        <div className="text-xs text-slate-400 mb-1">{metric.label}</div>
+                        <div className="text-lg font-bold text-white mb-1">{metric.value}</div>
+                        <div className="text-xs text-green-400">{metric.change}</div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Activity feed */}
+                  <div className="space-y-3">
+                    <div className="text-sm font-medium text-slate-300 mb-3">Recente activiteit</div>
+                    {[
+                      { action: "Nieuwe lead gekwalificeerd", time: "2 min geleden", status: "success" },
+                      { action: "Email campaign gestart", time: "8 min geleden", status: "active" },
+                      { action: "Meeting ingepland", time: "15 min geleden", status: "scheduled" }
+                    ].map((activity, index) => (
+                      <div key={index} className="flex items-center gap-3 p-3 bg-slate-800/30 rounded-lg">
+                        <div className={`w-2 h-2 rounded-full ${
+                          activity.status === 'success' ? 'bg-green-500' : 
+                          activity.status === 'active' ? 'bg-blue-500' : 'bg-purple-500'
+                        }`} />
+                        <div className="flex-1">
+                          <div className="text-sm text-slate-300">{activity.action}</div>
+                          <div className="text-xs text-slate-500">{activity.time}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Floating elements */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500/20 rounded-full animate-pulse" />
+                <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-cyan-500/20 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+              </div>
             </div>
           </div>
         </div>
@@ -290,10 +340,6 @@ const FuturisticHero = memo(() => {
             Plan je strategiegesprek
             <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
-          
-          <p className="text-slate-500">
-            30 minuten die jouw business kunnen veranderen
-          </p>
         </div>
       </section>
     </>
