@@ -62,9 +62,8 @@ const FuturisticHero = memo(() => {
               <h1 className="text-6xl lg:text-7xl font-bold text-white leading-tight">
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 bg-clip-text text-transparent">
                   WE ARE AI-DRIVEN
-                </span>
-                <br />
-                GROWTH AGENCY
+                </span>{" "}
+                <span className="text-white">GROWTH AGENCY</span>
               </h1>
               
               {/* Decorative underline */}
