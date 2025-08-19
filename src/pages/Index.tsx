@@ -3,14 +3,16 @@ import React, { memo } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2 } from 'lucide-react';
 
-// Import all new premium components
-import { PremiumHeader } from "@/components/landing/PremiumHeader";
-import { PremiumHeroRedesigned } from "@/components/landing/PremiumHeroRedesigned";
+// Import all agency-focused components
+import { AgencyHeader } from "@/components/landing/AgencyHeader";
+import { AgencyHero } from "@/components/landing/AgencyHero";
+import { SocialProofSection } from "@/components/landing/SocialProofSection";
 import { ServicesSection } from "@/components/landing/ServicesSection";
-import { ProcessSection } from "@/components/landing/ProcessSection";
-import { FeaturesSection } from "@/components/landing/FeaturesSection";
+import { CaseStudiesSection } from "@/components/landing/CaseStudiesSection";
+import { WhyScailUpSection } from "@/components/landing/WhyScailUpSection";
+import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
 import { FinalCTASection } from "@/components/landing/FinalCTASection";
-import { PremiumFooter } from "@/components/landing/PremiumFooter";
+import { AgencyFooter } from "@/components/landing/AgencyFooter";
 
 // Loading component
 const LoadingSpinner = memo(() => (
@@ -24,7 +26,7 @@ const LoadingSpinner = memo(() => (
 
 LoadingSpinner.displayName = 'LoadingSpinner';
 
-// Main redesigned landing page
+// Main agency landing page
 const Index = memo(() => {
   const { user, loading } = useAuth();
 
@@ -34,17 +36,19 @@ const Index = memo(() => {
 
   return (
     <div className="min-h-screen bg-[#111111] relative overflow-hidden">
-      <PremiumHeader />
+      <AgencyHeader />
       
       <main className="relative z-10">
-        <PremiumHeroRedesigned />
+        <AgencyHero />
+        <SocialProofSection />
         <ServicesSection />
-        <ProcessSection />
-        <FeaturesSection />
+        <CaseStudiesSection />
+        <WhyScailUpSection />
+        <TestimonialsSection />
         <FinalCTASection />
       </main>
       
-      <PremiumFooter />
+      <AgencyFooter />
     </div>
   );
 });

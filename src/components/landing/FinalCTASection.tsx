@@ -1,16 +1,16 @@
 
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Settings, Zap } from "lucide-react";
+import { ArrowRight, Calendar, Phone } from "lucide-react";
 import { useConversionModalContext } from '@/contexts/ConversionModalContext';
 
 export const FinalCTASection = memo(() => {
   const { openModal } = useConversionModalContext();
 
-  const handleStartAutopilotClick = useCallback((e: React.MouseEvent) => {
+  const handlePlanCallClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log('FinalCTASection: Start Autopilot clicked - opening modal');
+    console.log('FinalCTASection: Plan strategiegesprek clicked - opening modal');
     openModal();
   }, [openModal]);
 
@@ -22,90 +22,80 @@ export const FinalCTASection = memo(() => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="text-center max-w-4xl mx-auto space-y-12">
           
-          {/* Left Content */}
-          <div className="space-y-8">
-            <div className="space-y-6">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                Zet je bedrijf
-                <br />
-                <span className="bg-gradient-to-r from-[#2196F3] to-[#21CBF3] bg-clip-text text-transparent">
-                  op autopilot
-                </span>
-              </h2>
-              
-              <p className="text-xl text-[#CCCCCC] leading-relaxed max-w-xl">
-                Stop met handmatig leads zoeken. Laat onze AI je outbound marketing volledig overnemen 
-                en focus op wat je het beste doet: je bedrijf laten groeien.
-              </p>
-            </div>
+          {/* Main CTA Content */}
+          <div className="space-y-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Klaar om je agenda vol te krijgen
+              <br />
+              <span className="bg-gradient-to-r from-[#2196F3] to-[#21CBF3] bg-clip-text text-transparent">
+                met ideale klanten?
+              </span>
+            </h2>
+            
+            <p className="text-xl text-[#CCCCCC] leading-relaxed max-w-3xl mx-auto">
+              Plan een strategiegesprek en ontdek hoe wij jouw outbound marketing volledig kunnen 
+              overnemen. Geen tools, geen gedoe - alleen resultaten.
+            </p>
+          </div>
 
-            {/* Key benefits */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="w-2 h-2 bg-gradient-to-r from-[#2196F3] to-[#21CBF3] rounded-full"></div>
-                <span className="text-[#CCCCCC]">Setup in 24 uur, resultaten binnen 7 dagen</span>
+          {/* What to Expect */}
+          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div className="text-center space-y-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#2196F3] to-[#21CBF3] rounded-xl flex items-center justify-center mx-auto">
+                <Calendar className="h-6 w-6 text-white" />
               </div>
-              <div className="flex items-center gap-4">
-                <div className="w-2 h-2 bg-gradient-to-r from-[#2196F3] to-[#21CBF3] rounded-full"></div>
-                <span className="text-[#CCCCCC]">Geen lange contracten, opzegbaar per maand</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="w-2 h-2 bg-gradient-to-r from-[#2196F3] to-[#21CBF3] rounded-full"></div>
-                <span className="text-[#CCCCCC]">Persoonlijke begeleiding van AI-experts</span>
-              </div>
+              <h3 className="font-semibold text-white">15-min Intake</h3>
+              <p className="text-sm text-[#CCCCCC]">We analyseren jouw situatie en doelen</p>
             </div>
-
-            {/* CTA */}
-            <div className="pt-4">
-              <Button 
-                onClick={handleStartAutopilotClick}
-                className="group bg-gradient-to-r from-[#2196F3] to-[#21CBF3] text-white px-10 py-4 text-lg font-medium hover:shadow-xl hover:shadow-[#2196F3]/30 transition-all duration-300"
-              >
-                Start Autopilot Nu
-                <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </Button>
+            <div className="text-center space-y-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto">
+                <Phone className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-white">Custom Strategie</h3>
+              <p className="text-sm text-[#CCCCCC]">Persoonlijk plan voor jouw bedrijf</p>
+            </div>
+            <div className="text-center space-y-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto">
+                <ArrowRight className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="font-semibold text-white">Snelle Setup</h3>
+              <p className="text-sm text-[#CCCCCC]">Start binnen 2 weken met campagnes</p>
             </div>
           </div>
 
-          {/* Right Visual - AI Gear Animation */}
-          <div className="relative flex items-center justify-center">
-            <div className="relative">
-              {/* Large central gear */}
-              <div className="w-80 h-80 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#2196F3]/20 to-[#21CBF3]/20 rounded-full animate-spin" style={{ animationDuration: '20s' }}>
-                  <div className="absolute inset-8 bg-gradient-to-br from-[#2196F3]/30 to-[#21CBF3]/30 rounded-full">
-                    <div className="absolute inset-8 bg-gradient-to-br from-[#2196F3]/40 to-[#21CBF3]/40 rounded-full flex items-center justify-center">
-                      <Settings className="h-16 w-16 text-white" />
-                    </div>
-                  </div>
-                </div>
+          {/* CTA Button */}
+          <div className="pt-8">
+            <Button 
+              onClick={handlePlanCallClick}
+              className="group bg-gradient-to-r from-[#2196F3] to-[#21CBF3] text-white px-12 py-6 text-xl font-semibold hover:shadow-xl hover:shadow-[#2196F3]/30 transition-all duration-300"
+            >
+              Plan een strategiegesprek
+              <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
+            </Button>
+          </div>
 
-                {/* Orbiting smaller gears */}
-                <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-br from-[#21CBF3] to-[#2196F3] rounded-full flex items-center justify-center animate-spin" style={{ animationDuration: '10s', animationDirection: 'reverse' }}>
-                  <Zap className="h-8 w-8 text-white" />
-                </div>
-
-                <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-12 h-12 bg-gradient-to-br from-[#2196F3] to-[#21CBF3] rounded-full flex items-center justify-center animate-spin" style={{ animationDuration: '8s' }}>
-                  <Settings className="h-6 w-6 text-white" />
-                </div>
-
-                <div className="absolute top-1/2 -left-8 transform -translate-y-1/2 w-14 h-14 bg-gradient-to-br from-[#21CBF3] to-[#2196F3] rounded-full flex items-center justify-center animate-spin" style={{ animationDuration: '12s', animationDirection: 'reverse' }}>
-                  <Zap className="h-7 w-7 text-white" />
-                </div>
-
-                <div className="absolute top-1/2 -right-8 transform -translate-y-1/2 w-10 h-10 bg-gradient-to-br from-[#2196F3] to-[#21CBF3] rounded-full flex items-center justify-center animate-spin" style={{ animationDuration: '15s' }}>
-                  <Settings className="h-5 w-5 text-white" />
-                </div>
+          {/* Trust Elements */}
+          <div className="pt-8 space-y-4">
+            <div className="flex flex-wrap justify-center items-center gap-8 text-sm text-[#CCCCCC]">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Gratis strategiegesprek</span>
               </div>
-
-              {/* Floating particles */}
-              <div className="absolute top-0 left-0 w-2 h-2 bg-[#2196F3] rounded-full animate-pulse"></div>
-              <div className="absolute top-1/4 right-0 w-1.5 h-1.5 bg-[#21CBF3] rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-              <div className="absolute bottom-1/4 left-0 w-1 h-1 bg-gradient-to-r from-[#2196F3] to-[#21CBF3] rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-              <div className="absolute bottom-0 right-1/4 w-2 h-2 bg-[#21CBF3] rounded-full animate-pulse" style={{ animationDelay: '3s' }}></div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-[#2196F3] rounded-full"></div>
+                <span>Geen verplichtingen</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                <span>Direct bruikbaar advies</span>
+              </div>
             </div>
+            
+            <p className="text-[#CCCCCC] text-sm">
+              ⚡ Meestal reageren we binnen 2 uur
+            </p>
           </div>
         </div>
       </div>
