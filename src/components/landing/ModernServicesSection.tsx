@@ -13,6 +13,7 @@ const services = [
     icon: Zap,
     color: "from-blue-500 to-blue-600",
     bgColor: "bg-blue-500/10",
+    glowColor: "bg-blue-500/20",
     features: [
       "Volledige campagne setup & beheer",
       "AI-gegenereerde, gepersonaliseerde berichten",
@@ -28,6 +29,7 @@ const services = [
     icon: Database,
     color: "from-purple-500 to-purple-600", 
     bgColor: "bg-purple-500/10",
+    glowColor: "bg-purple-500/20",
     features: [
       "AI-gedreven prospect research",
       "Automatische lead kwalificatie",
@@ -43,6 +45,7 @@ const services = [
     icon: Brain,
     color: "from-green-500 to-green-600",
     bgColor: "bg-green-500/10", 
+    glowColor: "bg-green-500/20",
     features: [
       "Contextbewuste berichtgeneratie",
       "Emotionele intelligentie integratie",
@@ -119,46 +122,50 @@ const ServiceCard = memo(({ service, index }: { service: typeof services[0], ind
         </div>
       </div>
 
-      {/* Right visual */}
+      {/* Right visual with ambient backlight */}
       <div className={`relative ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
         <div className="relative w-80 h-80 mx-auto">
-          {/* Background card */}
-          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm rounded-3xl border border-slate-700/50 overflow-hidden">
-            {/* Gradient background */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-10`}></div>
+          {/* Ambient glow layers - multiple layers for depth */}
+          <div className={`absolute -inset-16 ${service.glowColor} blur-3xl rounded-full opacity-40 animate-pulse`}></div>
+          <div className={`absolute -inset-12 ${service.glowColor} blur-2xl rounded-full opacity-60 animate-pulse`} style={{ animationDelay: '1s' }}></div>
+          <div className={`absolute -inset-8 ${service.glowColor} blur-xl rounded-full opacity-30 animate-pulse`} style={{ animationDelay: '2s' }}></div>
+          
+          {/* Main card container */}
+          <div className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm rounded-3xl border border-slate-700/50 overflow-hidden">
+            {/* Subtle gradient overlay */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-5`}></div>
             
-            {/* Floating icon container */}
+            {/* Central icon container */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative">
-                {/* Main icon */}
-                <div className={`w-20 h-20 ${service.bgColor} backdrop-blur-sm rounded-2xl border border-slate-600/30 flex items-center justify-center`}>
-                  <service.icon className="h-10 w-10 text-white" />
+                {/* Icon background with glow */}
+                <div className={`w-24 h-24 ${service.bgColor} backdrop-blur-lg rounded-2xl border border-slate-600/30 flex items-center justify-center relative overflow-hidden`}>
+                  {/* Inner glow */}
+                  <div className={`absolute inset-2 ${service.glowColor} blur-md rounded-xl opacity-50`}></div>
+                  <service.icon className="h-12 w-12 text-white relative z-10" />
                 </div>
                 
-                {/* Floating connection points */}
-                <div className="absolute -top-4 -right-4 w-4 h-4 bg-blue-500 rounded-full animate-pulse"></div>
-                <div className="absolute -bottom-4 -left-4 w-3 h-3 bg-purple-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute top-1/2 -left-8 w-2 h-2 bg-cyan-500 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
-                <div className="absolute top-1/2 -right-8 w-2 h-2 bg-green-500 rounded-full animate-pulse" style={{ animationDelay: '3s' }}></div>
+                {/* Floating connection points with ambient glow */}
+                <div className="absolute -top-6 -right-6 w-4 h-4 bg-blue-500 rounded-full animate-pulse shadow-[0_0_20px_theme(colors.blue.500)]"></div>
+                <div className="absolute -bottom-6 -left-6 w-3 h-3 bg-purple-500 rounded-full animate-pulse shadow-[0_0_15px_theme(colors.purple.500)]" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 -left-10 w-2 h-2 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_10px_theme(colors.cyan.500)]" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute top-1/2 -right-10 w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_theme(colors.green.500)]" style={{ animationDelay: '3s' }}></div>
                 
-                {/* Connecting lines */}
-                <div className="absolute top-0 right-0 w-8 h-px bg-gradient-to-r from-transparent to-blue-500/60 transform rotate-45"></div>
-                <div className="absolute bottom-0 left-0 w-8 h-px bg-gradient-to-r from-transparent to-purple-500/60 transform -rotate-45"></div>
+                {/* Connecting lines with glow */}
+                <div className="absolute top-0 right-0 w-12 h-px bg-gradient-to-r from-transparent to-blue-500/80 transform rotate-45 shadow-[0_0_10px_theme(colors.blue.500)]"></div>
+                <div className="absolute bottom-0 left-0 w-12 h-px bg-gradient-to-r from-transparent to-purple-500/80 transform -rotate-45 shadow-[0_0_10px_theme(colors.purple.500)]"></div>
               </div>
             </div>
             
-            {/* Subtle grid pattern */}
-            <div className="absolute inset-0 opacity-[0.02]" style={{
+            {/* Enhanced grid pattern with subtle glow */}
+            <div className="absolute inset-0 opacity-[0.03]" style={{
               backgroundImage: `
-                linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+                linear-gradient(rgba(59, 130, 246, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.2) 1px, transparent 1px)
               `,
-              backgroundSize: '40px 40px'
+              backgroundSize: '30px 30px'
             }} />
           </div>
-
-          {/* Ambient glow */}
-          <div className={`absolute -inset-8 bg-gradient-to-r ${service.color} opacity-20 blur-3xl rounded-3xl animate-pulse`}></div>
         </div>
       </div>
     </div>
@@ -169,12 +176,12 @@ ServiceCard.displayName = 'ServiceCard';
 
 export const ModernServicesSection = memo(() => {
   return (
-    <section className="bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden">
-      {/* Background effects */}
+    <section className="bg-gradient-to-b from-gray-950 via-gray-900/95 to-gray-950 relative overflow-hidden">
+      {/* Enhanced ambient background effects */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Ambient glows */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/8 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-2/3 left-1/3 w-64 h-64 bg-green-500/6 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6">
