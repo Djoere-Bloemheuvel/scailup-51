@@ -184,15 +184,7 @@ ServiceCard.displayName = 'ServiceCard';
 
 export const ModernServicesSection = memo(() => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900/95 to-slate-950">
-      {/* Enhanced ambient background with colors */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-blue-500/[0.06] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-500/[0.05] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }} />
-        <div className="absolute top-1/2 left-1/6 w-64 h-64 bg-emerald-500/[0.04] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '12s', animationDelay: '4s' }} />
-        <div className="absolute bottom-1/4 right-1/3 w-72 h-72 bg-cyan-500/[0.03] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '14s', animationDelay: '6s' }} />
-      </div>
-
+    <section className="relative overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center py-24 space-y-8">
