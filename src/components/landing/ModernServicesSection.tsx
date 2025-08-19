@@ -184,7 +184,7 @@ ServiceCard.displayName = 'ServiceCard';
 
 export const ModernServicesSection = memo(() => {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-gradient-to-b from-gray-950 via-gray-900/95 to-gray-950">
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center py-24 space-y-8">
