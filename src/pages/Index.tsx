@@ -3,9 +3,14 @@ import React, { memo } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2 } from 'lucide-react';
 
-// Import the premium components
+// Import all new premium components
 import { PremiumHeader } from "@/components/landing/PremiumHeader";
-import { PremiumHero } from "@/components/landing/PremiumHero";
+import { PremiumHeroRedesigned } from "@/components/landing/PremiumHeroRedesigned";
+import { ServicesSection } from "@/components/landing/ServicesSection";
+import { ProcessSection } from "@/components/landing/ProcessSection";
+import { FeaturesSection } from "@/components/landing/FeaturesSection";
+import { FinalCTASection } from "@/components/landing/FinalCTASection";
+import { PremiumFooter } from "@/components/landing/PremiumFooter";
 
 // Loading component
 const LoadingSpinner = memo(() => (
@@ -19,7 +24,7 @@ const LoadingSpinner = memo(() => (
 
 LoadingSpinner.displayName = 'LoadingSpinner';
 
-// Main landing page component
+// Main redesigned landing page
 const Index = memo(() => {
   const { user, loading } = useAuth();
 
@@ -32,8 +37,14 @@ const Index = memo(() => {
       <PremiumHeader />
       
       <main className="relative z-10">
-        <PremiumHero />
+        <PremiumHeroRedesigned />
+        <ServicesSection />
+        <ProcessSection />
+        <FeaturesSection />
+        <FinalCTASection />
       </main>
+      
+      <PremiumFooter />
     </div>
   );
 });
