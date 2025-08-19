@@ -1,17 +1,11 @@
 
-import React, { Suspense, lazy, memo } from 'react';
+import React, { memo } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2 } from 'lucide-react';
 
-// Import the new components directly
+// Import the hero components
 import { ProfessionalHeader } from "@/components/landing/ProfessionalHeader";
 import { FuturisticHero } from "@/components/landing/FuturisticHero";
-import { AboutSection } from "@/components/landing/AboutSection";
-
-// Lazy load remaining components
-const SocialProofSection = lazy(() => import("@/components/landing/SocialProofSection").then(module => ({ default: module.SocialProofSection })));
-const TestimonialsSection = lazy(() => import("@/components/landing/TestimonialsSection").then(module => ({ default: module.TestimonialsSection })));
-const FinalCTASection = lazy(() => import("@/components/landing/FinalCTASection").then(module => ({ default: module.FinalCTASection })));
 
 // Loading component
 const LoadingSpinner = memo(() => (
@@ -39,19 +33,6 @@ const Index = memo(() => {
       
       <main className="relative z-10">
         <FuturisticHero />
-        <AboutSection />
-        
-        <div className="bg-gray-950">
-          <Suspense fallback={<LoadingSpinner />}>
-            <SocialProofSection />
-          </Suspense>
-          <Suspense fallback={<LoadingSpinner />}>
-            <TestimonialsSection />
-          </Suspense>
-          <Suspense fallback={<LoadingSpinner />}>
-            <FinalCTASection />
-          </Suspense>
-        </div>
       </main>
     </div>
   );
