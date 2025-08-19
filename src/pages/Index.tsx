@@ -3,19 +3,22 @@ import React, { Suspense, lazy, memo } from 'react';
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2 } from 'lucide-react';
 
-// Lazy load components with correct syntax for named exports
-const EnhancedHeader = lazy(() => import("@/components/landing/EnhancedHeader").then(module => ({ default: module.EnhancedHeader })));
-const OptimizedHero = lazy(() => import("@/components/landing/OptimizedHero").then(module => ({ default: module.OptimizedHero })));
+// Import the new components directly
+import { ProfessionalHeader } from "@/components/landing/ProfessionalHeader";
+import { FuturisticHero } from "@/components/landing/FuturisticHero";
+import { AboutSection } from "@/components/landing/AboutSection";
+
+// Lazy load remaining components
 const SocialProofSection = lazy(() => import("@/components/landing/SocialProofSection").then(module => ({ default: module.SocialProofSection })));
 const TestimonialsSection = lazy(() => import("@/components/landing/TestimonialsSection").then(module => ({ default: module.TestimonialsSection })));
 const FinalCTASection = lazy(() => import("@/components/landing/FinalCTASection").then(module => ({ default: module.FinalCTASection })));
 
 // Loading component
 const LoadingSpinner = memo(() => (
-  <div className="min-h-screen flex items-center justify-center bg-background">
+  <div className="min-h-screen flex items-center justify-center bg-gray-950">
     <div className="text-center space-y-4">
-      <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto" />
-      <p className="text-muted-foreground">Laden...</p>
+      <Loader2 className="h-8 w-8 animate-spin text-blue-400 mx-auto" />
+      <p className="text-gray-400">Laden...</p>
     </div>
   </div>
 ));
@@ -31,17 +34,14 @@ const Index = memo(() => {
   }
 
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
-      <Suspense fallback={<LoadingSpinner />}>
-        <EnhancedHeader />
-      </Suspense>
+    <div className="min-h-screen bg-gray-950 relative overflow-hidden">
+      <ProfessionalHeader />
       
       <main className="relative z-10">
-        <Suspense fallback={<LoadingSpinner />}>
-          <OptimizedHero />
-        </Suspense>
+        <FuturisticHero />
+        <AboutSection />
         
-        <div className="bg-background">
+        <div className="bg-gray-950">
           <Suspense fallback={<LoadingSpinner />}>
             <SocialProofSection />
           </Suspense>

@@ -231,6 +231,53 @@ All colors MUST be HSL.
   }
 }
 
+/* New futuristic animations */
+@keyframes hologram {
+  0%, 100% {
+    opacity: 0.8;
+    transform: rotateY(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: rotateY(10deg);
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes matrix-rain {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+@keyframes energy-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
 @layer utilities {
   .animate-fade-in {
     animation: fade-in 0.8s ease-out forwards;
@@ -282,6 +329,22 @@ All colors MUST be HSL.
     animation: circuit-glow 3s ease-in-out infinite;
   }
 
+  .animate-hologram {
+    animation: hologram 4s ease-in-out infinite;
+  }
+
+  .animate-scan-line {
+    animation: scan-line 3s linear infinite;
+  }
+
+  .animate-matrix-rain {
+    animation: matrix-rain 8s linear infinite;
+  }
+
+  .animate-energy-pulse {
+    animation: energy-pulse 2s infinite;
+  }
+
   /* Enhanced grid pattern background */
   .bg-grid-pattern {
     background-image: 
@@ -331,5 +394,37 @@ All colors MUST be HSL.
   .story-link:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
+  }
+
+  /* Futuristic glass effect */
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Neon glow effect */
+  .neon-glow {
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+
+  /* Holographic border */
+  .holo-border {
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5) 1;
+    background-clip: padding-box;
+    position: relative;
+  }
+
+  .holo-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+    border-radius: inherit;
+    z-index: -1;
   }
 }
