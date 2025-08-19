@@ -1,41 +1,39 @@
-
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Target, Zap, TrendingUp, Sparkles, Brain, Rocket, Shield, Users, Mail, BarChart3 } from "lucide-react";
 import { useConversionModalContext } from '@/contexts/ConversionModalContext';
-
 const FuturisticHero = memo(() => {
-  const { openModal } = useConversionModalContext();
-
+  const {
+    openModal
+  } = useConversionModalContext();
   const handlePlanGesprekClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     console.log('FuturisticHero: Plan een gesprek button clicked - opening modal');
     openModal();
   }, [openModal]);
-
-  return (
-    <>
+  return <>
       {/* Main Hero Section */}
       <section className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
         {/* Enhanced background effects */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Animated grid pattern */}
-          <div 
-            className="absolute inset-0 opacity-[0.02]"
-            style={{
-              backgroundImage: `
+          <div className="absolute inset-0 opacity-[0.02]" style={{
+          backgroundImage: `
                 linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
               `,
-              backgroundSize: '100px 100px'
-            }}
-          />
+          backgroundSize: '100px 100px'
+        }} />
           
           {/* Multiple ambient glows */}
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute top-1/2 right-1/3 w-80 h-80 bg-cyan-400/8 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-          <div className="absolute bottom-1/3 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
+          <div className="absolute top-1/2 right-1/3 w-80 h-80 bg-cyan-400/8 rounded-full blur-3xl animate-pulse" style={{
+          animationDelay: '2s'
+        }} />
+          <div className="absolute bottom-1/3 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{
+          animationDelay: '4s'
+        }} />
         </div>
 
         {/* Main hero content */}
@@ -45,10 +43,7 @@ const FuturisticHero = memo(() => {
             {/* Left Content */}
             <div className="space-y-10 animate-fade-in">
               {/* Welcome badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm font-medium backdrop-blur-sm">
-                <Brain className="h-4 w-4" />
-                WELKOM BIJ SCAILUP
-              </div>
+              
               
               {/* Main headline - smaller size */}
               <div className="space-y-6">
@@ -98,10 +93,7 @@ const FuturisticHero = memo(() => {
 
               {/* CTA Button */}
               <div className="space-y-4">
-                <Button 
-                  onClick={handlePlanGesprekClick}
-                  className="group bg-transparent border-2 border-blue-500/50 hover:bg-blue-500/10 text-blue-400 hover:text-white px-8 py-4 text-lg font-medium transition-all duration-500 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/25"
-                >
+                <Button onClick={handlePlanGesprekClick} className="group bg-transparent border-2 border-blue-500/50 hover:bg-blue-500/10 text-blue-400 hover:text-white px-8 py-4 text-lg font-medium transition-all duration-500 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-500/25">
                   NEEM CONTACT OP
                   <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
@@ -119,13 +111,17 @@ const FuturisticHero = memo(() => {
                   <div className="relative w-64 h-64 mx-auto">
                     {/* Outer glow rings */}
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/30 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
-                    <div className="absolute inset-4 bg-gradient-to-r from-cyan-400/30 via-blue-500/40 to-purple-400/30 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+                    <div className="absolute inset-4 bg-gradient-to-r from-cyan-400/30 via-blue-500/40 to-purple-400/30 rounded-full blur-2xl animate-pulse" style={{
+                    animationDelay: '1s'
+                  }} />
                     
                     {/* Central core */}
                     <div className="absolute inset-1/4 bg-gradient-to-br from-blue-400/60 via-cyan-300/70 to-blue-500/60 rounded-full backdrop-blur-sm border border-cyan-300/30">
                       {/* Inner energy patterns */}
                       <div className="absolute inset-2 rounded-full border border-cyan-400/20">
-                        <div className="absolute inset-1 rounded-full bg-gradient-to-tr from-transparent via-cyan-400/10 to-transparent animate-spin" style={{ animationDuration: '20s' }}>
+                        <div className="absolute inset-1 rounded-full bg-gradient-to-tr from-transparent via-cyan-400/10 to-transparent animate-spin" style={{
+                        animationDuration: '20s'
+                      }}>
                           {/* Neural network lines */}
                           <div className="absolute top-1/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
                           <div className="absolute top-3/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent" />
@@ -168,7 +164,9 @@ const FuturisticHero = memo(() => {
                     {/* Progress bar */}
                     <div className="mt-3">
                       <div className="w-full bg-slate-700 rounded-full h-1.5">
-                        <div className="bg-gradient-to-r from-blue-400 to-cyan-400 h-1.5 rounded-full transition-all duration-1000" style={{ width: '73%' }}></div>
+                        <div className="bg-gradient-to-r from-blue-400 to-cyan-400 h-1.5 rounded-full transition-all duration-1000" style={{
+                        width: '73%'
+                      }}></div>
                       </div>
                     </div>
                   </div>
@@ -200,7 +198,9 @@ const FuturisticHero = memo(() => {
                   </div>
                 </div>
 
-                <div className="absolute top-1/4 -left-8 bg-slate-900/80 backdrop-blur-sm rounded-lg p-2 border border-purple-400/20 animate-float" style={{ animationDelay: '2s' }}>
+                <div className="absolute top-1/4 -left-8 bg-slate-900/80 backdrop-blur-sm rounded-lg p-2 border border-purple-400/20 animate-float" style={{
+                animationDelay: '2s'
+              }}>
                   <div className="flex items-center gap-2">
                     <BarChart3 className="h-3 w-3 text-purple-400" />
                     <span className="text-xs text-white">Analytics</span>
@@ -208,11 +208,19 @@ const FuturisticHero = memo(() => {
                 </div>
 
                 {/* Orbiting particles */}
-                <div className="absolute inset-0 animate-spin" style={{ animationDuration: '30s' }}>
+                <div className="absolute inset-0 animate-spin" style={{
+                animationDuration: '30s'
+              }}>
                   <div className="absolute top-0 left-1/2 w-1.5 h-1.5 bg-cyan-400/60 rounded-full -translate-x-1/2 animate-pulse" />
-                  <div className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-400/60 rounded-full -translate-x-1/2 animate-pulse" style={{ animationDelay: '1s' }} />
-                  <div className="absolute left-0 top-1/2 w-1 h-1 bg-purple-400/60 rounded-full -translate-y-1/2 animate-pulse" style={{ animationDelay: '2s' }} />
-                  <div className="absolute right-0 top-1/2 w-1.5 h-1.5 bg-cyan-400/60 rounded-full -translate-y-1/2 animate-pulse" style={{ animationDelay: '3s' }} />
+                  <div className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-400/60 rounded-full -translate-x-1/2 animate-pulse" style={{
+                  animationDelay: '1s'
+                }} />
+                  <div className="absolute left-0 top-1/2 w-1 h-1 bg-purple-400/60 rounded-full -translate-y-1/2 animate-pulse" style={{
+                  animationDelay: '2s'
+                }} />
+                  <div className="absolute right-0 top-1/2 w-1.5 h-1.5 bg-cyan-400/60 rounded-full -translate-y-1/2 animate-pulse" style={{
+                  animationDelay: '3s'
+                }} />
                 </div>
               </div>
             </div>
@@ -298,26 +306,16 @@ const FuturisticHero = memo(() => {
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[
-                  "AI-gedreven lead generatie",
-                  "Geautomatiseerde workflows", 
-                  "Realtime analytics",
-                  "Persoonlijke begeleiding"
-                ].map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3">
+                {["AI-gedreven lead generatie", "Geautomatiseerde workflows", "Realtime analytics", "Persoonlijke begeleiding"].map((feature, index) => <div key={index} className="flex items-center gap-3">
                     <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
                     <span className="text-slate-300">{feature}</span>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
           </div>
         </div>
       </section>
-    </>
-  );
+    </>;
 });
-
 FuturisticHero.displayName = 'FuturisticHero';
-
 export { FuturisticHero };
