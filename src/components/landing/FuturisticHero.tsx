@@ -1,3 +1,4 @@
+
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
@@ -280,6 +281,19 @@ const FuturisticHero = memo(() => {
               Laten we jouw outbound marketing naar het volgende niveau tillen.
             </p>
           </div>
+
+          <Button 
+            onClick={handlePlanGesprekClick}
+            size="lg"
+            className="group bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white border-0 px-12 py-6 text-xl font-medium rounded-full shadow-2xl hover:shadow-blue-500/25 transition-all duration-500 hover:scale-[1.02]"
+          >
+            Plan je strategiegesprek
+            <ArrowRight className="ml-4 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
+          </Button>
+          
+          <p className="text-slate-500">
+            30 minuten die jouw business kunnen veranderen
+          </p>
         </div>
       </section>
     </>
