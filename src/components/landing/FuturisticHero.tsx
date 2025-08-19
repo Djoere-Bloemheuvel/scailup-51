@@ -50,9 +50,9 @@ const FuturisticHero = memo(() => {
                 WELKOM BIJ SCAILUP
               </div>
               
-              {/* Main headline - inspired by the reference */}
+              {/* Main headline - smaller size */}
               <div className="space-y-6">
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-[0.85] tracking-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[0.9] tracking-tight">
                   WIJ ZIJN 
                   <span className="block bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-400 bg-clip-text text-transparent">
                     AI-GEDREVEN
