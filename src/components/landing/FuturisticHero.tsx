@@ -1,12 +1,11 @@
 
-import React, { memo, useCallback, useEffect, useRef } from 'react';
+import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Search, Sparkles } from "lucide-react";
 import { useConversionModalContext } from '@/contexts/ConversionModalContext';
 
 const FuturisticHero = memo(() => {
   const { openModal } = useConversionModalContext();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleStartClick = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
@@ -15,153 +14,149 @@ const FuturisticHero = memo(() => {
     openModal();
   }, [openModal]);
 
-  // Cinematic background animation
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    let time = 0;
-    let animationId: number;
-
-    const animate = () => {
-      time += 0.005;
-      
-      // Clear with subtle gradient
-      const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-      gradient.addColorStop(0, 'rgba(2, 6, 23, 0.98)');
-      gradient.addColorStop(0.5, 'rgba(15, 23, 42, 0.95)');
-      gradient.addColorStop(1, 'rgba(30, 41, 59, 0.92)');
-      
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Subtle moving light rays
-      const centerX = canvas.width / 2;
-      const centerY = canvas.height / 2;
-
-      for (let i = 0; i < 3; i++) {
-        const angle = time * 0.3 + (i * Math.PI * 2 / 3);
-        const x1 = centerX + Math.cos(angle) * 200;
-        const y1 = centerY + Math.sin(angle) * 100;
-        const x2 = centerX + Math.cos(angle) * 800;
-        const y2 = centerY + Math.sin(angle) * 400;
-
-        const lightGradient = ctx.createLinearGradient(x1, y1, x2, y2);
-        lightGradient.addColorStop(0, `hsla(${220 + i * 30}, 70%, 60%, 0.02)`);
-        lightGradient.addColorStop(0.5, `hsla(${220 + i * 30}, 70%, 60%, 0.01)`);
-        lightGradient.addColorStop(1, `hsla(${220 + i * 30}, 70%, 60%, 0)`);
-
-        ctx.fillStyle = lightGradient;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animate();
-
-    return () => {
-      window.removeEventListener('resize', resizeCanvas);
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
+  const handleContactClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('FuturisticHero: Contact button clicked - opening modal');
+    openModal();
+  }, [openModal]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950">
-      {/* Cinematic canvas background */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 z-0"
-      />
-
-      {/* Ultra-subtle gradient overlays for depth */}
-      <div className="absolute inset-0 z-10">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-950/5 to-transparent"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-950/30"></div>
-      </div>
-
-      {/* Minimal floating elements */}
-      <div className="absolute inset-0 z-20 pointer-events-none">
+    <section className="min-h-screen flex items-center relative overflow-hidden bg-gray-950">
+      {/* Dark background with subtle patterns */}
+      <div className="absolute inset-0">
+        {/* Base dark gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950 via-slate-900 to-gray-950" />
+        
+        {/* Subtle grid pattern */}
         <div 
-          className="absolute w-px h-32 bg-gradient-to-b from-transparent via-blue-400/20 to-transparent animate-float"
+          className="absolute inset-0 opacity-5"
           style={{
-            left: '20%',
-            top: '30%',
-            animationDuration: '8s',
-            animationDelay: '0s'
+            backgroundImage: `
+              linear-gradient(90deg, rgba(59, 130, 246, 0.3) 1px, transparent 1px),
+              linear-gradient(0deg, rgba(59, 130, 246, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '100px 100px'
           }}
         />
-        <div 
-          className="absolute w-px h-24 bg-gradient-to-b from-transparent via-purple-400/15 to-transparent animate-float"
-          style={{
-            right: '25%',
-            top: '60%',
-            animationDuration: '12s',
-            animationDelay: '4s'
-          }}
-        />
+        
+        {/* Ambient lighting effects */}
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-purple-500/8 rounded-full blur-2xl" />
       </div>
 
-      {/* Centered content */}
-      <div className="container mx-auto px-6 py-20 relative z-40">
-        <div className="flex flex-col items-center text-center space-y-12">
-          {/* Welcome Badge */}
-          <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full backdrop-blur-xl animate-fade-in">
-            <Sparkles className="h-4 w-4 text-blue-300/70" />
-            <span className="text-blue-200/80 text-sm font-medium tracking-wider">WELKOM BIJ SCAILUP</span>
-          </div>
-          
-          {/* Main Heading */}
-          <div className="space-y-8 max-w-5xl animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            <h1 className="text-6xl lg:text-8xl font-bold text-white leading-[0.9] tracking-tight">
-              WE ARE{" "}
-              <span className="block bg-gradient-to-r from-blue-400 via-white to-blue-300 bg-clip-text text-transparent">
-                AI-DRIVEN
-              </span>
-              <span className="block bg-gradient-to-r from-purple-400 via-white to-purple-300 bg-clip-text text-transparent">
-                GROWTH AGENCY
-              </span>
-            </h1>
+      <div className="container mx-auto px-6 py-20 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column - Content */}
+          <div className="space-y-8">
+            {/* Welcome Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full">
+              <Sparkles className="h-4 w-4 text-blue-400" />
+              <span className="text-blue-300 text-sm font-medium tracking-wide">WELKOM BIJ SCAILUP</span>
+            </div>
             
-            <p className="text-xl lg:text-2xl text-gray-300/80 leading-relaxed max-w-4xl mx-auto font-light animate-fade-in" style={{ animationDelay: '0.6s' }}>
-              Van startup naar scale-up. ScailUp automatiseert je sales, marketing en groeiprocessen 
-              met geavanceerde AI-technologie zodat jij je kunt focussen op wat écht belangrijk is.
-            </p>
-          </div>
-          
-          {/* CTA Button */}
-          <div className="animate-fade-in" style={{ animationDelay: '0.9s' }}>
+            {/* Main Heading */}
+            <div className="space-y-6">
+              <h1 className="text-6xl lg:text-7xl font-bold text-white leading-tight">
+                WE ARE{" "}
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 bg-clip-text text-transparent">
+                  AI-DRIVEN
+                </span>
+                <br />
+                GROWTH AGENCY
+              </h1>
+              
+              {/* Decorative underline */}
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
+              
+              <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+                Van startup naar scale-up. ScailUp automatiseert je sales, marketing en groeiprocessen 
+                met geavanceerde AI-technologie zodat jij je kunt focussen op wat écht belangrijk is.
+              </p>
+            </div>
+            
+            {/* CTA Button */}
             <Button 
               onClick={handleStartClick}
               size="lg" 
-              className="group relative gap-4 px-16 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white transition-all duration-700 text-xl font-medium hover:shadow-2xl hover:shadow-blue-500/25 hover:scale-[1.02] border-0 rounded-2xl"
+              className="group relative gap-3 px-8 py-6 bg-transparent border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-300 text-lg font-semibold"
             >
-              <span className="tracking-wide">START GRATIS</span>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-500" />
+              <span>START GRATIS</span>
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
+          </div>
+
+          {/* Right Column - Futuristic Visual */}
+          <div className="relative">
+            {/* Main circular glow effect */}
+            <div className="relative w-full h-[600px] flex items-center justify-center">
+              {/* Central glowing orb */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-80 h-80 rounded-full bg-gradient-to-br from-blue-400/30 to-purple-500/30 blur-3xl animate-pulse-glow"></div>
+              </div>
+              
+              {/* Outer ring */}
+              <div className="relative w-96 h-96 rounded-full border border-blue-500/30 flex items-center justify-center animate-spin" style={{ animationDuration: '20s' }}>
+                {/* Inner ring */}
+                <div className="w-72 h-72 rounded-full border border-purple-500/40 flex items-center justify-center animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}>
+                  {/* Core */}
+                  <div className="w-48 h-48 rounded-full bg-gradient-to-br from-blue-500/40 to-purple-500/40 backdrop-blur-sm border border-white/10 flex items-center justify-center">
+                    <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+                      <Sparkles className="h-16 w-16 text-white animate-pulse" />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Floating elements around the rings */}
+                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2">
+                  <div className="w-4 h-4 bg-blue-400 rounded-full animate-pulse"></div>
+                </div>
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-2">
+                  <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                </div>
+                <div className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-2">
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+                </div>
+                <div className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-2">
+                  <div className="w-3 h-3 bg-pink-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                </div>
+              </div>
+
+              {/* Floating data elements */}
+              {[...Array(8)].map((_, i) => (
+                <div 
+                  key={i}
+                  className="absolute w-1 h-16 bg-gradient-to-t from-transparent via-blue-400/60 to-transparent animate-data-flow"
+                  style={{
+                    left: `${20 + Math.random() * 60}%`,
+                    top: `${10 + Math.random() * 80}%`,
+                    animationDelay: `${Math.random() * 4}s`,
+                    animationDuration: `${3 + Math.random() * 2}s`
+                  }}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom minimal info */}
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-40 animate-fade-in" style={{ animationDelay: '1.2s' }}>
-        <div className="flex items-center gap-8 text-gray-400/60 text-sm">
-          <span>AI Sales Automation</span>
-          <div className="w-1 h-1 bg-gray-400/40 rounded-full"></div>
-          <span>Lead Generation</span>
-          <div className="w-1 h-1 bg-gray-400/40 rounded-full"></div>
-          <span>Marketing Automation</span>
+      {/* Bottom section with additional info */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="flex flex-col items-center gap-4 text-gray-400">
+          <div className="flex items-center gap-6 text-sm">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span>AI Sales Automation</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              <span>Lead Generation</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+              <span>Marketing Automation</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
