@@ -1,0 +1,114 @@
+{
+  "name": "Validate Website",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "validate-website",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "validate-website-webhook"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.websiteUrl }}",
+        "options": {
+          "timeout": 10000,
+          "allowUnauthorizedCerts": false,
+          "response": {
+            "response": {
+              "responseFormat": "json",
+              "responseHeaders": "keep",
+              "options": {}
+            }
+          }
+        }
+      },
+      "id": "http-request",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extract text content from the website response\nconst websiteContent = $input.first().json.body || '';\n\n// Remove HTML tags and extra whitespace\nconst cleanText = websiteContent\n  .replace(/<[^>]*>/g, ' ') // Remove HTML tags\n  .replace(/\\s+/g, ' ') // Replace multiple spaces with single space\n  .trim();\n\n// Calculate word count\nconst wordCount = cleanText.split(' ').filter(word => word.length > 0).length;\n\n// Calculate character count\nconst charCount = cleanText.length;\n\n// Extract title from HTML\nconst titleMatch = websiteContent.match(/<title[^>]*>([^<]+)<\\/title>/i);\nconst title = titleMatch ? titleMatch[1].trim() : 'No title found';\n\n// Check if website is accessible\nconst isAccessible = $input.first().json.statusCode === 200;\n\n// Return structured data\nreturn {\n  json: {\n    originalUrl: $('Webhook Trigger').first().json.websiteUrl,\n    isAccessible,\n    statusCode: $input.first().json.statusCode,\n    title,\n    wordCount,\n    charCount,\n    cleanText: cleanText.substring(0, 500) + (cleanText.length > 500 ? '...' : ''),\n    analyzedAt: new Date().toISOString()\n  }\n};"
+      },
+      "id": "calculate-word-count",
+      "name": "Calculate Word Count",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "id": "webhook-response",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Calculate Word Count",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Word Count": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "id": "validate-website-workflow",
+  "tags": [
+    {
+      "createdAt": "2024-01-15T10:00:00.000Z",
+      "updatedAt": "2024-01-15T10:00:00.000Z",
+      "id": "website-validation",
+      "name": "Website Validation"
+    }
+  ]
+} 

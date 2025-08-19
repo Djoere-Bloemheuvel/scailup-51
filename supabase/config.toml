@@ -1,0 +1,103 @@
+
+project_id = "zkrfnyokxhsgetslfodg"
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[auth]
+enabled = true
+port = 54324
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["https://lovable.dev"]
+jwt_expiry = 3600
+enable_signup = true
+enable_confirmations = false
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = false
+
+[db]
+port = 54322
+
+[db.pooler]
+enabled = false
+port = 54329
+pool_mode = "transaction"
+default_pool_size = 20
+max_client_conn = 100
+
+[realtime]
+enabled = true
+port = 54323
+max_concurrent_users = 200
+
+[studio]
+enabled = true
+port = 54323
+
+[inbucket]
+enabled = true
+port = 54324
+smtp_port = 54325
+pop3_port = 54326
+
+[storage]
+enabled = true
+port = 54325
+file_size_limit = "50MiB"
+image_transformation = true
+
+[functions.create-checkout-session]
+verify_jwt = true
+
+[functions.credit-reset-processor]
+verify_jwt = false
+
+[functions.credit-reset-scheduler]
+verify_jwt = false
+
+[functions.credit-rollover-handler]
+verify_jwt = false
+
+[functions.credits-manager]
+verify_jwt = false
+
+[functions.cron-status]
+verify_jwt = false
+
+[functions.on-user-created]
+verify_jwt = false
+
+[functions.process-user-tasks]
+verify_jwt = false
+
+[functions.register-client-user]
+verify_jwt = false
+
+[functions.register-webhook]
+verify_jwt = true
+
+[functions.scheduled-task-processor]
+verify_jwt = false
+
+[functions.stripe-webhook]
+verify_jwt = false
+
+[functions.test-cron]
+verify_jwt = false
+
+[functions.use-credits]
+verify_jwt = false
+
+[functions.contact-conversion-webhook]
+verify_jwt = true
+
+[edge_runtime]
+enabled = true
+port = 54326

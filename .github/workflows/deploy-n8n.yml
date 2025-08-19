@@ -1,0 +1,140 @@
+name: Deploy n8n Workflows
+
+on:
+  push:
+    branches: [main, develop]
+    paths: ['n8n-workflows/workflows/*.json']
+  pull_request:
+    branches: [main]
+    paths: ['n8n-workflows/workflows/*.json']
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Validate JSON files
+        run: |
+          echo "🔍 Validating JSON workflow files..."
+          for file in n8n-workflows/workflows/*.json; do
+            if [ -f "$file" ]; then
+              echo "Validating $file..."
+              node -e "
+                try {
+                  const fs = require('fs');
+                  const content = fs.readFileSync('$file', 'utf8');
+                  JSON.parse(content);
+                  console.log('✅ $file is valid JSON');
+                } catch (error) {
+                  console.error('❌ $file has invalid JSON:', error.message);
+                  process.exit(1);
+                }
+              "
+            fi
+          done
+          
+      - name: Deploy to n8n (Production)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |
+          echo "🚀 Deploying workflows to production n8n instance..."
+          
+          # Get list of changed JSON files
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD | grep 'n8n-workflows/workflows/.*\.json$' || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No workflow files changed, checking all files..."
+            CHANGED_FILES=$(find n8n-workflows/workflows -name "*.json" -type f)
+          fi
+          
+          for file in $CHANGED_FILES; do
+            if [ -f "$file" ]; then
+              echo "📦 Deploying $file..."
+              
+              # Extract workflow name from filename
+              WORKFLOW_NAME=$(basename "$file" .json)
+              
+              # Deploy workflow to n8n
+              RESPONSE=$(curl -s -w "\n%{http_code}" \
+                -X POST \
+                -H "Content-Type: application/json" \
+                -H "X-N8N-API-KEY: ${{ secrets.N8N_API_KEY }}" \
+                -d @"$file" \
+                "https://n8n.scailup.com/api/v1/workflows")
+              
+              # Extract response body and status code
+              HTTP_STATUS=$(echo "$RESPONSE" | tail -n1)
+              RESPONSE_BODY=$(echo "$RESPONSE" | head -n -1)
+              
+              if [ "$HTTP_STATUS" -eq 201 ] || [ "$HTTP_STATUS" -eq 200 ]; then
+                echo "✅ Successfully deployed $WORKFLOW_NAME"
+                echo "Response: $RESPONSE_BODY"
+              else
+                echo "❌ Failed to deploy $WORKFLOW_NAME"
+                echo "HTTP Status: $HTTP_STATUS"
+                echo "Response: $RESPONSE_BODY"
+                exit 1
+              fi
+            fi
+          done
+          
+      - name: Test deployment (Staging)
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "🧪 Testing workflow deployment (staging)..."
+          
+          # Get list of changed JSON files
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | grep 'n8n-workflows/workflows/.*\.json$' || echo "")
+          
+          if [ -z "$CHANGED_FILES" ]; then
+            echo "No workflow files changed in PR"
+            exit 0
+          fi
+          
+          for file in $CHANGED_FILES; do
+            if [ -f "$file" ]; then
+              echo "🧪 Testing $file..."
+              
+              # Validate workflow structure
+              WORKFLOW_NAME=$(basename "$file" .json)
+              
+              # Check if workflow has required nodes
+              if ! node -e "
+                const fs = require('fs');
+                const workflow = JSON.parse(fs.readFileSync('$file', 'utf8'));
+                const hasWebhook = workflow.nodes.some(node => node.type === 'n8n-nodes-base.webhook');
+                const hasResponse = workflow.nodes.some(node => node.type === 'n8n-nodes-base.respondToWebhook');
+                
+                if (!hasWebhook) {
+                  console.error('❌ Workflow must have a webhook trigger');
+                  process.exit(1);
+                }
+                if (!hasResponse) {
+                  console.error('❌ Workflow must have a webhook response node');
+                  process.exit(1);
+                }
+                console.log('✅ Workflow structure is valid');
+              "; then
+                exit 1
+              fi
+            fi
+          done
+          
+      - name: Create deployment summary
+        if: always()
+        run: |
+          echo "📊 Deployment Summary"
+          echo "===================="
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Triggered by: ${{ github.event_name }}"
+          echo "Changed files:"
+          git diff --name-only HEAD~1 HEAD | grep 'n8n-workflows/workflows/.*\.json$' || echo "No workflow files changed" 

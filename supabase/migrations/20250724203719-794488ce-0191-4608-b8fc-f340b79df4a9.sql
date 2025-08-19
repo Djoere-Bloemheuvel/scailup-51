@@ -1,0 +1,181 @@
+
+-- DISABLED: Task queue system - using direct triggers instead
+-- Create pending_user_tasks table for decoupled user processing
+-- CREATE TABLE IF NOT EXISTS public.pending_user_tasks (
+--   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+--   user_id UUID NOT NULL,
+--   task_type TEXT NOT NULL DEFAULT 'user_created',
+--   payload JSONB NOT NULL,
+--   status TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'processing', 'completed', 'failed')),
+--   attempts INTEGER NOT NULL DEFAULT 0,
+--   max_attempts INTEGER NOT NULL DEFAULT 5,
+--   last_error TEXT,
+--   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+--   updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+--   next_retry_at TIMESTAMP WITH TIME ZONE DEFAULT now()
+-- );
+
+-- Create indexes for performance
+-- CREATE INDEX IF NOT EXISTS idx_pending_user_tasks_status ON public.pending_user_tasks(status);
+-- CREATE INDEX IF NOT EXISTS idx_pending_user_tasks_next_retry ON public.pending_user_tasks(next_retry_at) WHERE status IN ('pending', 'failed');
+-- CREATE INDEX IF NOT EXISTS idx_pending_user_tasks_user_id ON public.pending_user_tasks(user_id);
+
+-- Enable RLS on pending_user_tasks
+-- ALTER TABLE public.pending_user_tasks ENABLE ROW LEVEL SECURITY;
+
+-- Create RLS policies for pending_user_tasks
+-- CREATE POLICY "Service role can manage all pending tasks" 
+-- ON public.pending_user_tasks 
+-- FOR ALL 
+-- USING (auth.role() = 'service_role')
+-- WITH CHECK (auth.role() = 'service_role');
+
+-- CREATE POLICY "System can insert pending tasks" 
+-- ON public.pending_user_tasks 
+-- FOR INSERT 
+-- WITH CHECK (true);
+
+-- Create trigger to update updated_at timestamp
+-- CREATE OR REPLACE FUNCTION public.update_pending_user_tasks_updated_at()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
+--   NEW.updated_at = now();
+--   RETURN NEW;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+-- CREATE TRIGGER update_pending_user_tasks_updated_at
+--   BEFORE UPDATE ON public.pending_user_tasks
+--   FOR EACH ROW
+--   EXECUTE FUNCTION public.update_pending_user_tasks_updated_at();
+
+-- DISABLED: Task queue implementation - using direct triggers
+-- Refactor handle_new_user function to use task queue instead of direct Edge Function call
+-- CREATE OR REPLACE FUNCTION public.handle_new_user()
+-- RETURNS TRIGGER
+-- LANGUAGE plpgsql
+-- SECURITY DEFINER
+-- AS $function$
+-- BEGIN
+--   -- Insert task into pending_user_tasks table instead of calling Edge Function directly
+--   -- This ensures user creation never fails due to Edge Function issues
+--   BEGIN
+--     INSERT INTO public.pending_user_tasks (
+--       user_id,
+--       task_type,
+--       payload,
+--       status,
+--       created_at
+--     ) VALUES (
+--       NEW.id,
+--       'user_created',
+--       jsonb_build_object(
+--         'record', row_to_json(NEW),
+--         'event_type', 'user_created',
+--         'timestamp', now()
+--       ),
+--       'pending',
+--       now()
+--     );
+--     
+--     -- Log successful task creation
+--     RAISE LOG 'Successfully queued user creation task for user %', NEW.id;
+--     
+--   EXCEPTION WHEN OTHERS THEN
+--     -- Log error but don't fail user creation
+--     RAISE WARNING 'Failed to queue user creation task for user %: %', NEW.id, SQLERRM;
+--     -- We continue execution to not break user registration
+--   END;
+--   
+--   RETURN NEW;
+-- END;
+-- $function$;
+
+-- DISABLED: Task processing functions - using direct triggers
+-- Create function to process pending user tasks (to be called by Edge Function or external processor)
+-- CREATE OR REPLACE FUNCTION public.process_pending_user_tasks(batch_size INTEGER DEFAULT 10)
+-- RETURNS TABLE(
+--   processed_count INTEGER,
+--   success_count INTEGER,
+--   error_count INTEGER
+-- ) AS $$
+-- DECLARE
+--   task_record RECORD;
+--   processed INTEGER := 0;
+--   successes INTEGER := 0;
+--   errors INTEGER := 0;
+-- BEGIN
+--   -- Process pending tasks in batches
+--   FOR task_record IN 
+--     SELECT id, user_id, payload, attempts, max_attempts
+--     FROM public.pending_user_tasks
+--     WHERE status IN ('pending', 'failed')
+--       AND next_retry_at <= now()
+--       AND attempts < max_attempts
+--     ORDER BY created_at ASC
+--     LIMIT batch_size
+--     FOR UPDATE SKIP LOCKED
+--   LOOP
+--     processed := processed + 1;
+--     
+--     -- Update task status to processing
+--     UPDATE public.pending_user_tasks 
+--     SET 
+--       status = 'processing',
+--       updated_at = now()
+--     WHERE id = task_record.id;
+--     
+--     -- Here you would typically call the Edge Function or external service
+--     -- For now, we'll simulate success (this will be handled by the actual processor)
+--     
+--     -- Mark as completed for now (the actual processor will handle the Edge Function call)
+--     UPDATE public.pending_user_tasks 
+--     SET 
+--       status = 'completed',
+--       updated_at = now()
+--     WHERE id = task_record.id;
+--     
+--     successes := successes + 1;
+--   END LOOP;
+--   
+--   RETURN QUERY SELECT processed, successes, errors;
+-- END;
+-- $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Create function to retry failed tasks with exponential backoff
+-- CREATE OR REPLACE FUNCTION public.retry_failed_user_tasks()
+-- RETURNS INTEGER AS $$
+-- DECLARE
+--   updated_count INTEGER;
+-- BEGIN
+--   -- Reset failed tasks for retry with exponential backoff
+--   UPDATE public.pending_user_tasks 
+--   SET 
+--     status = 'pending',
+--     next_retry_at = now() + (INTERVAL '1 minute' * POWER(2, LEAST(attempts, 10))),
+--     updated_at = now()
+--   WHERE status = 'failed' 
+--     AND attempts < max_attempts 
+--     AND next_retry_at <= now();
+--   
+--   GET DIAGNOSTICS updated_count = ROW_COUNT;
+--   
+--   RETURN updated_count;
+-- END;
+-- $$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Create function to clean up old completed tasks
+-- CREATE OR REPLACE FUNCTION public.cleanup_completed_user_tasks(older_than_days INTEGER DEFAULT 7)
+-- RETURNS INTEGER AS $$
+-- DECLARE
+--   deleted_count INTEGER;
+-- BEGIN
+--   DELETE FROM public.pending_user_tasks
+--   WHERE status = 'completed'
+--     AND created_at < now() - (older_than_days || ' days')::INTERVAL;
+--   
+--   GET DIAGNOSTICS deleted_count = ROW_COUNT;
+--   
+--   RETURN deleted_count;
+-- END;
+-- $$ LANGUAGE plpgsql SECURITY DEFINER;
