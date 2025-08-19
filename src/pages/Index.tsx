@@ -6,6 +6,7 @@ import { Loader2 } from 'lucide-react';
 // Import the hero components
 import { ProfessionalHeader } from "@/components/landing/ProfessionalHeader";
 import { FuturisticHero } from "@/components/landing/FuturisticHero";
+import { ModernServicesSection } from "@/components/landing/ModernServicesSection";
 
 // Loading component
 const LoadingSpinner = memo(() => (
@@ -33,6 +34,7 @@ const Index = memo(() => {
       
       <main className="relative z-10">
         <FuturisticHero />
+        <ModernServicesSection />
       </main>
     </div>
   );
