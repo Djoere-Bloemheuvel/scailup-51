@@ -1,4 +1,3 @@
-
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Search, Sparkles, Brain, Zap, Target, Cpu, Globe, Layers } from "lucide-react";
@@ -61,9 +60,8 @@ const FuturisticHero = memo(() => {
             {/* Main Heading */}
             <div className="space-y-6">
               <h1 className="text-6xl lg:text-7xl font-bold text-white leading-tight">
-                WE ARE{" "}
                 <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-blue-500 bg-clip-text text-transparent">
-                  AI-DRIVEN
+                  WE ARE AI-DRIVEN
                 </span>
                 <br />
                 GROWTH AGENCY
