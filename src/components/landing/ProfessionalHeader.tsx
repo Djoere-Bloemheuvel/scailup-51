@@ -34,7 +34,6 @@ export function ProfessionalHeader() {
     { href: "#over-ons", label: "Over Ons" },
     { href: "#diensten", label: "Diensten" },
     { href: "#portfolio", label: "Portfolio" },
-    { href: "#paginas", label: "Pagina's" },
     { href: "#contact", label: "Contact" }
   ];
 
@@ -54,55 +53,55 @@ export function ProfessionalHeader() {
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
       isScrolled 
-        ? 'bg-[#0A0F1C]/95 backdrop-blur-xl border-b border-gray-700/30 shadow-lg' 
-        : 'bg-[#0A0F1C]/80 backdrop-blur-sm'
+        ? 'bg-[#030712]/98 backdrop-blur-2xl border-b border-slate-800/40 shadow-2xl shadow-slate-950/20' 
+        : 'bg-[#030712]/90 backdrop-blur-xl'
     }`}>
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-6 py-5">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
+          {/* Premium Logo */}
+          <Link to="/" className="flex items-center gap-4 group">
             <div className="relative">
-              <div className="h-10 w-10 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-lg flex items-center justify-center shadow-lg group-hover:shadow-cyan-400/30 transition-all duration-300 group-hover:scale-110">
+              <div className="h-11 w-11 bg-gradient-to-br from-blue-500/90 to-slate-400/80 rounded-2xl flex items-center justify-center shadow-2xl shadow-blue-500/20 group-hover:shadow-blue-400/30 transition-all duration-500 group-hover:scale-110 group-hover:-rotate-3">
                 <Sparkles className="h-6 w-6 text-white animate-pulse" />
               </div>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+              <h1 className="text-2xl font-bold text-slate-50 group-hover:text-blue-400 transition-all duration-300 tracking-tight">
                 SCAILUP
               </h1>
-              <span className="text-xs text-gray-400 tracking-widest font-medium">
+              <span className="text-xs text-slate-500 tracking-[0.2em] font-medium uppercase">
                 AI GROWTH AGENCY
               </span>
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Premium Desktop Navigation */}
+          <nav className="hidden lg:flex items-center gap-10">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="relative text-gray-300 hover:text-white transition-colors duration-200 group font-medium"
+                className="relative text-slate-400 hover:text-slate-200 transition-all duration-300 group font-medium text-sm tracking-wide"
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 transition-all duration-300 group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-400 to-slate-400 transition-all duration-500 group-hover:w-full"></span>
               </a>
             ))}
           </nav>
 
-          {/* Action Buttons */}
+          {/* Premium Action Buttons */}
           <div className="hidden lg:flex items-center gap-4">
-            <button className="p-2 rounded-lg hover:bg-gray-800/50 transition-colors">
-              <Search className="h-5 w-5 text-gray-400 hover:text-white transition-colors" />
+            <button className="p-3 rounded-2xl hover:bg-slate-800/30 transition-all duration-300 group">
+              <Search className="h-5 w-5 text-slate-500 group-hover:text-slate-300 transition-colors duration-300" />
             </button>
             
             {!user && (
               <Button 
                 onClick={handleContactClick}
                 variant="outline"
-                className="gap-2 border-cyan-400/50 text-cyan-400 hover:bg-cyan-400/10 hover:text-cyan-300 transition-all duration-300"
+                className="gap-3 border border-slate-600/40 bg-slate-900/20 backdrop-blur-sm text-slate-300 hover:bg-slate-800/40 hover:text-slate-100 hover:border-slate-500/60 transition-all duration-500 px-6 py-3 rounded-2xl shadow-lg shadow-slate-950/40 hover:shadow-xl hover:shadow-slate-900/60 hover:-translate-y-0.5"
                 type="button"
               >
                 Contact
@@ -113,41 +112,41 @@ export function ProfessionalHeader() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-gray-800/50 transition-colors"
+            className="lg:hidden p-3 rounded-2xl hover:bg-slate-800/30 transition-all duration-300"
             type="button"
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6 text-white" />
+              <X className="h-6 w-6 text-slate-200" />
             ) : (
-              <Menu className="h-6 w-6 text-white" />
+              <Menu className="h-6 w-6 text-slate-200" />
             )}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Premium Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden mt-4 p-6 bg-[#0A0F1C]/95 backdrop-blur-xl rounded-2xl border border-gray-700/30 animate-fade-in">
-            <nav className="flex flex-col gap-4 mb-6">
+          <div className="lg:hidden mt-6 p-8 bg-slate-900/40 backdrop-blur-2xl rounded-3xl border border-slate-700/30 animate-fade-in shadow-2xl shadow-slate-950/60">
+            <nav className="flex flex-col gap-6 mb-8">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="text-gray-300 hover:text-white transition-colors py-2 font-medium"
+                  className="text-slate-300 hover:text-slate-100 transition-colors py-3 font-medium text-lg tracking-wide"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.label}
                 </a>
               ))}
             </nav>
-            <div className="flex flex-col gap-3 pt-4 border-t border-gray-700/30">
+            <div className="flex flex-col gap-4 pt-6 border-t border-slate-700/30">
               {!user && (
                 <Button 
                   onClick={handleMobileContactClick}
-                  className="w-full gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700"
+                  className="w-full gap-3 bg-gradient-to-r from-blue-600/90 to-slate-600/80 hover:from-blue-500/90 hover:to-slate-500/80 text-lg py-4 rounded-2xl shadow-xl shadow-slate-950/60 transition-all duration-500"
                   type="button"
                 >
                   Contact
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-5 w-5" />
                 </Button>
               )}
             </div>

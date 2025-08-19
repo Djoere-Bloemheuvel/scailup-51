@@ -15,96 +15,111 @@ const FuturisticHero = memo(() => {
   }, [openModal]);
 
   return (
-    <section className="min-h-screen bg-[#0A0F1C] relative overflow-hidden">
-      {/* Background with subtle gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0A0F1C] via-[#0E1528] to-[#1A1F3A]" />
+    <section className="min-h-screen bg-[#030712] relative overflow-hidden">
+      {/* Deep gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#030712] via-[#0f172a] to-[#1e293b]" />
       
-      {/* Ambient glow effects */}
+      {/* Premium ambient effects */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 right-1/3 w-96 h-96 bg-cyan-400/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
-        <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-blue-400/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s', animationDelay: '3s' }} />
+        <div className="absolute top-1/4 right-1/3 w-[500px] h-[500px] bg-blue-500/[0.02] rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-1/3 left-1/4 w-[400px] h-[400px] bg-slate-300/[0.01] rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '10s', animationDelay: '4s' }} />
       </div>
+
+      {/* Subtle grid overlay for premium tech feel */}
+      <div className="absolute inset-0 opacity-[0.02]" style={{
+        backgroundImage: 'radial-gradient(circle at 1px 1px, rgb(148, 163, 184) 1px, transparent 0)',
+        backgroundSize: '40px 40px'
+      }} />
 
       {/* Main Content Container */}
       <div className="container mx-auto px-6 relative z-10 min-h-screen">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen pt-20 lg:pt-0">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-center min-h-screen pt-24 lg:pt-0">
           
-          {/* Left Column - Text Content */}
-          <div className="space-y-8 lg:space-y-12">
+          {/* Left Column - Premium Text Content */}
+          <div className="space-y-10 lg:space-y-14">
             
-            {/* Pre-headline */}
-            <div className="space-y-2">
-              <p className="text-sm font-medium text-cyan-400 tracking-[0.2em] uppercase">
+            {/* Premium pre-headline */}
+            <div className="space-y-3">
+              <p className="text-xs font-semibold text-slate-400 tracking-[0.3em] uppercase opacity-80">
                 WELKOM BIJ SCAILUP
               </p>
-              <div className="w-12 h-0.5 bg-cyan-400"></div>
+              <div className="w-16 h-px bg-gradient-to-r from-slate-400/40 to-transparent"></div>
             </div>
             
-            {/* Main Headlines */}
-            <div className="space-y-6">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white leading-[1.1] tracking-tight">
-                <span className="block">WIJ ZIJN EEN</span>
-                <span className="block font-medium">
-                  <span className="text-cyan-400">AI-FIRST</span>{' '}
-                  <span className="text-white">MARKETING</span>
+            {/* Premium main headlines */}
+            <div className="space-y-8">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extralight text-slate-50 leading-[1.05] tracking-[-0.02em]">
+                <span className="block mb-3">WIJ ZIJN EEN</span>
+                <span className="block font-normal mb-3">
+                  <span className="text-blue-400 font-medium">AI-FIRST</span>{' '}
+                  <span className="text-slate-50">MARKETING</span>
                 </span>
-                <span className="block">& SALES AGENCY</span>
+                <span className="block text-slate-200 font-light">& SALES AGENCY</span>
               </h1>
             </div>
             
-            {/* Description */}
-            <div className="max-w-lg">
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light">
-                We helpen bedrijven groeien met slimme AI-oplossingen voor marketing en sales. 
-                Van leadgeneratie tot conversie - wij maken het verschil.
+            {/* Premium description */}
+            <div className="max-w-xl">
+              <p className="text-xl md:text-2xl text-slate-400 leading-[1.6] font-light tracking-[-0.01em]">
+                We helpen ambitieuze bedrijven schalen met geavanceerde AI-oplossingen. 
+                Van intelligente leadgeneratie tot geautomatiseerde conversie.
               </p>
             </div>
             
-            {/* CTA Button */}
-            <div className="pt-4">
+            {/* Premium CTA Button */}
+            <div className="pt-6">
               <Button 
                 onClick={handlePlanGesprекClick}
                 variant="outline"
                 size="lg" 
-                className="group relative border-2 border-cyan-400 bg-transparent text-cyan-400 hover:bg-cyan-400 hover:text-[#0A0F1C] px-8 py-4 text-base font-medium rounded-none transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/25"
+                className="group relative border border-slate-600/50 bg-slate-900/20 backdrop-blur-sm text-slate-200 hover:bg-slate-800/30 hover:border-slate-500/60 px-10 py-5 text-lg font-medium rounded-xl transition-all duration-500 hover:shadow-2xl hover:shadow-slate-900/40 hover:-translate-y-0.5"
               >
-                <Calendar className="h-5 w-5 mr-3" />
-                <span className="font-semibold tracking-wide">PLAN EEN GESPREK</span>
-                <ArrowRight className="h-5 w-5 ml-3 group-hover:translate-x-1 transition-transform duration-200" />
+                <Calendar className="h-5 w-5 mr-4 opacity-80" />
+                <span className="font-medium tracking-wide">PLAN EEN GESPREK</span>
+                <ArrowRight className="h-5 w-5 ml-4 opacity-80 group-hover:translate-x-1 group-hover:opacity-100 transition-all duration-300" />
+                
+                {/* Premium button inner glow */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-slate-100/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </Button>
             </div>
 
           </div>
 
-          {/* Right Column - Hero Image */}
+          {/* Right Column - Premium Hero Image */}
           <div className="relative lg:h-full flex items-center justify-center">
-            <div className="relative w-full max-w-lg lg:max-w-none">
-              {/* Glow effect behind image */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 blur-3xl scale-110" />
+            <div className="relative w-full max-w-2xl lg:max-w-none">
+              {/* Sophisticated glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-400/[0.04] via-blue-500/[0.02] to-slate-600/[0.03] blur-[80px] scale-110" />
               
-              {/* Main hero image */}
-              <div className="relative z-10 bg-gradient-to-br from-gray-800/20 to-gray-900/40 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30">
+              {/* Premium container */}
+              <div className="relative z-10 bg-gradient-to-br from-slate-800/10 via-slate-900/20 to-slate-950/30 backdrop-blur-xl rounded-3xl p-10 border border-slate-700/20 shadow-2xl shadow-slate-950/60">
                 <img 
-                  src="/placeholder.svg" 
-                  alt="AI-powered futuristic interface" 
-                  className="w-full h-auto object-contain"
+                  src="/futuristic-ai-interface.png" 
+                  alt="Premium AI-powered business intelligence dashboard" 
+                  className="w-full h-auto object-contain rounded-2xl"
                   style={{ 
-                    filter: 'drop-shadow(0 0 20px rgba(34, 211, 238, 0.3))',
+                    filter: 'contrast(1.1) brightness(1.05) saturate(0.9)',
                   }}
                 />
+                
+                {/* Premium inner border */}
+                <div className="absolute inset-8 rounded-2xl border border-slate-600/10 pointer-events-none" />
               </div>
               
-              {/* Floating accent elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-cyan-400/10 rounded-full blur-xl animate-pulse" style={{ animationDuration: '4s' }} />
-              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl animate-pulse" style={{ animationDuration: '7s', animationDelay: '2s' }} />
+              {/* Subtle floating elements */}
+              <div className="absolute -top-8 -right-8 w-32 h-32 bg-slate-400/[0.02] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '6s' }} />
+              <div className="absolute -bottom-12 -left-12 w-40 h-40 bg-blue-500/[0.015] rounded-full blur-3xl animate-pulse" style={{ animationDuration: '9s', animationDelay: '3s' }} />
             </div>
           </div>
 
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0A0F1C] to-transparent" />
+      {/* Premium bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#030712] via-[#030712]/80 to-transparent" />
+      
+      {/* Subtle vignette */}
+      <div className="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-[#030712]/20" />
     </section>
   );
 });
