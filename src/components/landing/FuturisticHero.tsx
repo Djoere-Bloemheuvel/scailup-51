@@ -1,7 +1,7 @@
 
 import React, { memo, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Target, Zap, TrendingUp, Sparkles, Brain, Rocket, Shield } from "lucide-react";
+import { ArrowRight, Target, Zap, TrendingUp, Sparkles, Brain, Rocket, Shield, Users, Mail, BarChart3 } from "lucide-react";
 import { useConversionModalContext } from '@/contexts/ConversionModalContext';
 
 const FuturisticHero = memo(() => {
@@ -69,6 +69,33 @@ const FuturisticHero = memo(() => {
                 </p>
               </div>
 
+              {/* Key Benefits */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-slate-900/40 backdrop-blur-sm rounded-lg p-4 border border-slate-700/30">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                      <Target className="h-4 w-4 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-lg font-bold text-white">94%</div>
+                      <div className="text-xs text-slate-400">Precisie</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="bg-slate-900/40 backdrop-blur-sm rounded-lg p-4 border border-slate-700/30">
+                  <div className="flex items-center gap-3">
+                    <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-lg flex items-center justify-center">
+                      <TrendingUp className="h-4 w-4 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-lg font-bold text-white">5x</div>
+                      <div className="text-xs text-slate-400">Sneller</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               {/* CTA Button */}
               <div className="space-y-4">
                 <Button 
@@ -81,69 +108,109 @@ const FuturisticHero = memo(() => {
               </div>
             </div>
 
-            {/* Right Visual - AI Figure inspired design */}
+            {/* Right Visual - Combined AI Figure + Dashboard */}
             <div className="relative animate-slide-up flex items-center justify-center">
-              {/* Central AI visualization */}
-              <div className="relative">
-                {/* Main glowing orb */}
-                <div className="relative w-80 h-80 mx-auto">
-                  {/* Outer glow rings */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/30 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
-                  <div className="absolute inset-4 bg-gradient-to-r from-cyan-400/30 via-blue-500/40 to-purple-400/30 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
-                  
-                  {/* Central core */}
-                  <div className="absolute inset-1/4 bg-gradient-to-br from-blue-400/60 via-cyan-300/70 to-blue-500/60 rounded-full backdrop-blur-sm border border-cyan-300/30">
-                    {/* Inner energy patterns */}
-                    <div className="absolute inset-2 rounded-full border border-cyan-400/20">
-                      <div className="absolute inset-1 rounded-full bg-gradient-to-tr from-transparent via-cyan-400/10 to-transparent animate-spin" style={{ animationDuration: '20s' }}>
-                        {/* Neural network lines */}
-                        <div className="absolute top-1/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
-                        <div className="absolute top-3/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent" />
-                        <div className="absolute left-1/4 top-1/4 w-px h-1/2 bg-gradient-to-b from-transparent via-purple-400/60 to-transparent" />
-                        <div className="absolute right-1/4 top-1/4 w-px h-1/2 bg-gradient-to-b from-transparent via-cyan-400/60 to-transparent" />
+              {/* Main container for both elements */}
+              <div className="relative w-full max-w-md">
+                
+                {/* Central AI visualization */}
+                <div className="relative mb-8">
+                  {/* Main glowing orb */}
+                  <div className="relative w-64 h-64 mx-auto">
+                    {/* Outer glow rings */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-cyan-400/30 to-purple-500/20 rounded-full blur-3xl animate-pulse" />
+                    <div className="absolute inset-4 bg-gradient-to-r from-cyan-400/30 via-blue-500/40 to-purple-400/30 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }} />
+                    
+                    {/* Central core */}
+                    <div className="absolute inset-1/4 bg-gradient-to-br from-blue-400/60 via-cyan-300/70 to-blue-500/60 rounded-full backdrop-blur-sm border border-cyan-300/30">
+                      {/* Inner energy patterns */}
+                      <div className="absolute inset-2 rounded-full border border-cyan-400/20">
+                        <div className="absolute inset-1 rounded-full bg-gradient-to-tr from-transparent via-cyan-400/10 to-transparent animate-spin" style={{ animationDuration: '20s' }}>
+                          {/* Neural network lines */}
+                          <div className="absolute top-1/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
+                          <div className="absolute top-3/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-blue-400/60 to-transparent" />
+                          <div className="absolute left-1/4 top-1/4 w-px h-1/2 bg-gradient-to-b from-transparent via-purple-400/60 to-transparent" />
+                          <div className="absolute right-1/4 top-1/4 w-px h-1/2 bg-gradient-to-b from-transparent via-cyan-400/60 to-transparent" />
+                        </div>
+                      </div>
+                      
+                      {/* Center AI symbol */}
+                      <div className="absolute inset-1/3 rounded-full bg-gradient-to-br from-white/20 to-cyan-300/40 backdrop-blur-sm flex items-center justify-center">
+                        <Brain className="h-6 w-6 text-white animate-pulse" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Dashboard-style metrics below orb */}
+                <div className="space-y-4">
+                  {/* Live metrics card */}
+                  <div className="bg-slate-900/60 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-sm text-slate-400">Live Dashboard</span>
+                      <div className="flex items-center gap-1">
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <span className="text-xs text-green-400">LIVE</span>
                       </div>
                     </div>
                     
-                    {/* Center AI symbol */}
-                    <div className="absolute inset-1/3 rounded-full bg-gradient-to-br from-white/20 to-cyan-300/40 backdrop-blur-sm flex items-center justify-center">
-                      <Brain className="h-8 w-8 text-white animate-pulse" />
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="text-center">
+                        <div className="text-xl font-bold text-white">2,847</div>
+                        <div className="text-xs text-slate-400">Leads</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-xl font-bold text-white">€2.3M</div>
+                        <div className="text-xs text-slate-400">Pipeline</div>
+                      </div>
+                    </div>
+                    
+                    {/* Progress bar */}
+                    <div className="mt-3">
+                      <div className="w-full bg-slate-700 rounded-full h-1.5">
+                        <div className="bg-gradient-to-r from-blue-400 to-cyan-400 h-1.5 rounded-full transition-all duration-1000" style={{ width: '73%' }}></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Activity feed */}
+                  <div className="bg-slate-900/60 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2 text-xs">
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                        <span className="text-slate-300">Nieuwe lead: TechCorp B.V.</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
+                        <span className="text-slate-300">Email geopend: Innovation Inc.</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs">
+                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full"></div>
+                        <span className="text-slate-300">Meeting gepland: StartupXYZ</span>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Floating data elements around the orb */}
-                <div className="absolute -top-8 -right-8 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 border border-cyan-400/20 animate-float">
+                {/* Floating data elements around the main visual */}
+                <div className="absolute -top-4 -right-4 bg-slate-900/80 backdrop-blur-sm rounded-lg p-2 border border-cyan-400/20 animate-float">
                   <div className="flex items-center gap-2">
-                    <Target className="h-4 w-4 text-cyan-400" />
-                    <span className="text-xs text-white">94% Precisie</span>
+                    <Mail className="h-3 w-3 text-cyan-400" />
+                    <span className="text-xs text-white">AI Email</span>
                   </div>
                 </div>
 
-                <div className="absolute -bottom-8 -left-8 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 border border-blue-400/20 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="absolute top-1/4 -left-8 bg-slate-900/80 backdrop-blur-sm rounded-lg p-2 border border-purple-400/20 animate-float" style={{ animationDelay: '2s' }}>
                   <div className="flex items-center gap-2">
-                    <Rocket className="h-4 w-4 text-blue-400" />
-                    <span className="text-xs text-white">5x Sneller</span>
-                  </div>
-                </div>
-
-                <div className="absolute top-1/2 -right-16 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 border border-purple-400/20 animate-float" style={{ animationDelay: '2s' }}>
-                  <div className="flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-purple-400" />
-                    <span className="text-xs text-white">€2.3M Pipeline</span>
-                  </div>
-                </div>
-
-                <div className="absolute top-1/4 -left-16 bg-slate-900/80 backdrop-blur-sm rounded-lg p-3 border border-green-400/20 animate-float" style={{ animationDelay: '3s' }}>
-                  <div className="flex items-center gap-2">
-                    <Shield className="h-4 w-4 text-green-400" />
-                    <span className="text-xs text-white">100% Betrouwbaar</span>
+                    <BarChart3 className="h-3 w-3 text-purple-400" />
+                    <span className="text-xs text-white">Analytics</span>
                   </div>
                 </div>
 
                 {/* Orbiting particles */}
                 <div className="absolute inset-0 animate-spin" style={{ animationDuration: '30s' }}>
-                  <div className="absolute top-0 left-1/2 w-2 h-2 bg-cyan-400/60 rounded-full -translate-x-1/2 animate-pulse" />
-                  <div className="absolute bottom-0 left-1/2 w-1.5 h-1.5 bg-blue-400/60 rounded-full -translate-x-1/2 animate-pulse" style={{ animationDelay: '1s' }} />
+                  <div className="absolute top-0 left-1/2 w-1.5 h-1.5 bg-cyan-400/60 rounded-full -translate-x-1/2 animate-pulse" />
+                  <div className="absolute bottom-0 left-1/2 w-1 h-1 bg-blue-400/60 rounded-full -translate-x-1/2 animate-pulse" style={{ animationDelay: '1s' }} />
                   <div className="absolute left-0 top-1/2 w-1 h-1 bg-purple-400/60 rounded-full -translate-y-1/2 animate-pulse" style={{ animationDelay: '2s' }} />
                   <div className="absolute right-0 top-1/2 w-1.5 h-1.5 bg-cyan-400/60 rounded-full -translate-y-1/2 animate-pulse" style={{ animationDelay: '3s' }} />
                 </div>
@@ -153,7 +220,7 @@ const FuturisticHero = memo(() => {
         </div>
       </section>
 
-      {/* About Section - inspired by "We Bring Creative Ideas To Life" */}
+      {/* About Section */}
       <section className="py-32 bg-gradient-to-b from-slate-950 to-slate-900 relative">
         {/* Background elements */}
         <div className="absolute left-16 top-1/2 -translate-y-1/2">
