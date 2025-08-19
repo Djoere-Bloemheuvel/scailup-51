@@ -263,7 +263,7 @@ const FuturisticHero = memo(() => {
         </div>
       </section>
 
-      {/* Final CTA Section - Only keep the basic content, remove the button and extra text */}
+      {/* Final CTA Section */}
       <section className="py-32 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative">
         {/* Background effects */}
         <div className="absolute inset-0 overflow-hidden">
@@ -280,10 +280,6 @@ const FuturisticHero = memo(() => {
               Laten we jouw outbound marketing naar het volgende niveau tillen.
             </p>
           </div>
-          
-          <p className="text-slate-500">
-            30 minuten die jouw business kunnen veranderen
-          </p>
         </div>
       </section>
     </>
