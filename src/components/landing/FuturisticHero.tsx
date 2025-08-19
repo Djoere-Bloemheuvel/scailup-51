@@ -15,127 +15,84 @@ const FuturisticHero = memo(() => {
   }, [openModal]);
 
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden" style={{ backgroundColor: '#0A0F1C' }}>
-      {/* Ambient Background Effects */}
-      <div className="absolute inset-0">
-        {/* Base gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/20 via-transparent to-purple-900/10" />
-        
-        {/* Ambient glow - Electric Cyan */}
-        <div 
-          className="absolute top-1/4 right-1/3 w-96 h-96 rounded-full blur-3xl opacity-20 animate-pulse-glow"
-          style={{ backgroundColor: '#00E5FF' }}
-        />
-        
-        {/* Ambient glow - Neon Purple */}
-        <div 
-          className="absolute bottom-1/3 left-1/4 w-80 h-80 rounded-full blur-2xl opacity-15 animate-pulse-glow"
-          style={{ 
-            backgroundColor: '#8B5CF6',
-            animationDelay: '2s'
-          }}
-        />
-
-        {/* Abstract floating elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Subtle geometric shapes */}
-          <div 
-            className="absolute top-20 left-10 w-32 h-1 bg-gradient-to-r opacity-30 animate-drift"
-            style={{ 
-              background: 'linear-gradient(90deg, transparent, #00E5FF, transparent)'
-            }}
-          />
-          <div 
-            className="absolute bottom-32 right-20 w-24 h-1 bg-gradient-to-r opacity-25 animate-drift"
-            style={{ 
-              background: 'linear-gradient(90deg, transparent, #8B5CF6, transparent)',
-              animationDelay: '3s'
-            }}
-          />
-        </div>
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-white">
+      {/* Subtle background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-white" />
+      
+      {/* Ambient subtle elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Very subtle floating orbs */}
+        <div className="absolute top-1/4 right-1/3 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '8s' }} />
+        <div className="absolute bottom-1/3 left-1/4 w-60 h-60 bg-purple-500/5 rounded-full blur-2xl animate-pulse" style={{ animationDuration: '12s', animationDelay: '4s' }} />
       </div>
 
-      {/* Main Content - Centered */}
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center max-w-4xl mx-auto space-y-12">
+      {/* Main Content Container */}
+      <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="max-w-5xl mx-auto space-y-12">
           
-          {/* Main Heading */}
-          <div className="space-y-8">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight tracking-tight">
-              <span className="block text-white font-black">SLIMMERE</span>
-              <span 
-                className="block bg-gradient-to-r bg-clip-text text-transparent font-black"
-                style={{
-                  backgroundImage: 'linear-gradient(135deg, #00E5FF 0%, #8B5CF6 100%)'
-                }}
-              >
-                GROEI
+          {/* Pre-headline */}
+          <div className="space-y-2">
+            <p className="text-sm font-medium text-gray-500 tracking-wide uppercase">
+              AI-First Marketing & Sales Agency
+            </p>
+          </div>
+          
+          {/* Main Headlines - Apple style typography */}
+          <div className="space-y-6">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tight">
+              <span className="block">Slimmere</span>
+              <span className="block font-medium bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                groei
               </span>
             </h1>
             
-            {/* Subtitle */}
-            <div className="space-y-4">
-              <p className="text-2xl md:text-3xl text-gray-300 font-light tracking-wide">
-                Minder ruis. Meer impact.
-              </p>
-              
-              {/* Glassmorphism description card */}
-              <div 
-                className="inline-block p-6 rounded-2xl border backdrop-blur-xl max-w-2xl mx-auto"
-                style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  borderColor: 'rgba(255, 255, 255, 0.1)'
-                }}
-              >
-                <p className="text-lg text-gray-200 leading-relaxed">
-                  AI-first marketing & sales agency. Van hyperpersoonlijke e-mailcampagnes 
-                  tot strategische LinkedIn outreach en maatwerk ABM-campagnes die 
-                  meetbaar omzet opleveren.
-                </p>
-              </div>
-            </div>
+            <p className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-600 leading-tight tracking-tight max-w-3xl mx-auto">
+              Minder ruis. Meer impact.
+            </p>
           </div>
           
-          {/* CTA Button with ambient glow */}
-          <div className="flex justify-center">
-            <div className="relative group">
-              {/* Button glow effect */}
-              <div 
-                className="absolute -inset-1 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity duration-300"
-                style={{
-                  background: 'linear-gradient(135deg, #00E5FF, #8B5CF6)'
-                }}
-              />
-              
-              <Button 
-                onClick={handlePlanGesprекClick}
-                size="lg" 
-                className="relative gap-3 px-12 py-8 text-xl font-semibold rounded-2xl border-0 transition-all duration-300 hover:scale-105"
-                style={{
-                  backgroundColor: 'rgba(0, 229, 255, 0.1)',
-                  color: '#00E5FF',
-                  backdropFilter: 'blur(20px)',
-                  border: '1px solid rgba(0, 229, 255, 0.3)'
-                }}
-              >
-                <Calendar className="h-6 w-6" />
-                <span>Plan een gesprek</span>
-                <ArrowRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
-              </Button>
+          {/* Description */}
+          <div className="max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 leading-relaxed font-normal">
+              Van hyperpersoonlijke e-mailcampagnes tot strategische LinkedIn outreach 
+              en maatwerk ABM-campagnes die meetbaar omzet opleveren.
+            </p>
+          </div>
+          
+          {/* CTA Button - Apple style */}
+          <div className="pt-8">
+            <Button 
+              onClick={handlePlanGesprекClick}
+              size="lg" 
+              className="group relative bg-blue-600 hover:bg-blue-700 text-white border-0 rounded-full px-12 py-6 text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
+            >
+              <Calendar className="h-5 w-5 mr-3" />
+              <span>Plan een gesprek</span>
+              <ArrowRight className="h-5 w-5 ml-3 group-hover:translate-x-1 transition-transform duration-200" />
+            </Button>
+          </div>
+
+          {/* Trust indicators - minimal */}
+          <div className="pt-16 space-y-4">
+            <p className="text-sm text-gray-400 font-medium">
+              Vertrouwd door groeiende bedrijven
+            </p>
+            <div className="flex justify-center items-center space-x-8 opacity-30">
+              <div className="w-20 h-8 bg-gray-200 rounded"></div>
+              <div className="w-16 h-8 bg-gray-200 rounded"></div>
+              <div className="w-24 h-8 bg-gray-200 rounded"></div>
+              <div className="w-18 h-8 bg-gray-200 rounded"></div>
             </div>
           </div>
 
         </div>
       </div>
 
-      {/* Bottom ambient line */}
-      <div className="absolute bottom-0 left-0 right-0 h-px opacity-30">
-        <div 
-          className="h-full bg-gradient-to-r"
-          style={{
-            background: 'linear-gradient(90deg, transparent, #00E5FF, #8B5CF6, transparent)'
-          }}
-        />
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+        <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
+          <div className="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-bounce"></div>
+        </div>
       </div>
     </section>
   );
